@@ -43,6 +43,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Log in';
 
   @override
+  String get loginUsernameLabel => 'Username';
+
+  @override
+  String get loginPasswordLabel => 'Password';
+
+  @override
+  String get loginDemoHint => 'Hint: demo / demo';
+
+  @override
+  String get loginOrDivider => 'or';
+
+  @override
+  String get continueWithGoogle => 'Continue with Google';
+
+  @override
+  String get googleSignInFailed =>
+      'Google sign-in failed. Check Firebase configuration and try again.';
+
+  @override
   String get logout => 'Log out';
 
   @override

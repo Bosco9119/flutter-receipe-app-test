@@ -13,10 +13,18 @@ class _FakeAuthRepository implements AuthRepository {
   Stream<AuthSessionEntity?> watchSession() => Stream.value(null);
 
   @override
+  AuthSessionEntity? readPersistedSession() => null;
+
+  @override
   Future<AuthSessionEntity> login({
     required String username,
     required String password,
   }) async {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<AuthSessionEntity> signInWithGoogle() async {
     throw UnimplementedError();
   }
 

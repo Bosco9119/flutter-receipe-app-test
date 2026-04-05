@@ -1,8 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../../l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/theme/app_colors.dart';
+import '../../core/auth/google_sign_in_cancelled_exception.dart';
+import '../../l10n/app_localizations.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/gradient_background.dart';
 
@@ -18,7 +19,10 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String? _error;
-  bool _busy = false;
+  bool _demoBusy = false;
+  bool _googleBusy = false;
+
+  bool get _anyBusy => _demoBusy || _googleBusy;
 
   @override
   void dispose() {
@@ -32,17 +36,39 @@ class _LoginPageState extends State<LoginPage> {
     if (!(_formKey.currentState?.validate() ?? false)) {
       return;
     }
-    setState(() => _busy = true);
+    setState(() => _demoBusy = true);
     try {
       await context.read<AuthViewModel>().login(
-            _userController.text,
-            _passwordController.text,
-          );
+        _userController.text,
+        _passwordController.text,
+      );
     } catch (e) {
       setState(() => _error = e.toString());
     } finally {
       if (mounted) {
-        setState(() => _busy = false);
+        setState(() => _demoBusy = false);
+      }
+    }
+  }
+
+  Future<void> _googleSignIn() async {
+    final l10n = AppLocalizations.of(context)!;
+    setState(() => _error = null);
+    setState(() => _googleBusy = true);
+    try {
+      await context.read<AuthViewModel>().signInWithGoogle();
+    } on GoogleSignInCancelledException {
+      // User closed the sheet; no message.
+    } catch (e) {
+      debugPrint('Google sign-in error: $e');
+      setState(() {
+        _error = kDebugMode
+            ? '${l10n.googleSignInFailed}\n\n$e'
+            : l10n.googleSignInFailed;
+      });
+    } finally {
+      if (mounted) {
+        setState(() => _googleBusy = false);
       }
     }
   }
@@ -50,6 +76,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
 
@@ -73,19 +100,21 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Text(
                             l10n.login,
-                            style: theme.textTheme.headlineSmall,
+                            style: theme.textTheme.headlineSmall?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 16),
                           TextFormField(
                             controller: _userController,
                             textInputAction: TextInputAction.next,
-                            decoration: const InputDecoration(
-                              labelText: 'Username',
+                            decoration: InputDecoration(
+                              labelText: l10n.loginUsernameLabel,
                             ),
                             validator: (value) {
                               if (value == null || value.trim().isEmpty) {
-                                return 'Required';
+                                return l10n.fieldRequired;
                               }
                               return null;
                             },
@@ -94,12 +123,12 @@ class _LoginPageState extends State<LoginPage> {
                           TextFormField(
                             controller: _passwordController,
                             obscureText: true,
-                            decoration: const InputDecoration(
-                              labelText: 'Password',
+                            decoration: InputDecoration(
+                              labelText: l10n.loginPasswordLabel,
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Required';
+                                return l10n.fieldRequired;
                               }
                               return null;
                             },
@@ -109,31 +138,98 @@ class _LoginPageState extends State<LoginPage> {
                             Text(
                               _error!,
                               style: theme.textTheme.bodySmall?.copyWith(
-                                color: theme.colorScheme.error,
+                                color: scheme.error,
                               ),
                             ),
                           ],
                           const SizedBox(height: 20),
                           FilledButton(
-                            onPressed: _busy ? null : _submit,
-                            child: _busy
-                                ? const SizedBox(
-                                    height: 20,
-                                    width: 20,
+                            onPressed: _anyBusy ? null : _submit,
+                            child: _demoBusy
+                                ? SizedBox(
+                                    height: 22,
+                                    width: 22,
                                     child: CircularProgressIndicator(
                                       strokeWidth: 2,
+                                      color: scheme.onPrimary,
                                     ),
                                   )
                                 : Text(l10n.login),
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'Hint: demo / demo',
+                            l10n.loginDemoHint,
                             textAlign: TextAlign.center,
                             style: theme.textTheme.bodySmall?.copyWith(
-                              color: isDark
-                                  ? AppColors.onGradientDarkSecondary
-                                  : AppColors.onGradientLightSecondary,
+                              color: scheme.onSurfaceVariant,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  height: 1,
+                                  color: scheme.outlineVariant,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                ),
+                                child: Text(
+                                  l10n.loginOrDivider,
+                                  style: theme.textTheme.labelMedium?.copyWith(
+                                    color: scheme.onSurfaceVariant,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  height: 1,
+                                  color: scheme.outlineVariant,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          OutlinedButton(
+                            onPressed: _anyBusy ? null : _googleSignIn,
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: scheme.onSurface,
+                              side: BorderSide(color: scheme.outline),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 14,
+                                horizontal: 16,
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                if (_googleBusy) ...[
+                                  SizedBox(
+                                    height: 22,
+                                    width: 22,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      color: scheme.primary,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                ] else ...[
+                                  const _GoogleMonogram(),
+                                  const SizedBox(width: 12),
+                                ],
+                                Flexible(
+                                  child: Text(
+                                    l10n.continueWithGoogle,
+                                    style: theme.textTheme.titleSmall?.copyWith(
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -142,6 +238,38 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Simple “G” mark; replace with an official asset if you add branding files.
+class _GoogleMonogram extends StatelessWidget {
+  const _GoogleMonogram();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 22,
+      height: 22,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+            color: Theme.of(context).colorScheme.outlineVariant,
+          ),
+        ),
+        child: const Center(
+          child: Text(
+            'G',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF4285F4),
             ),
           ),
         ),

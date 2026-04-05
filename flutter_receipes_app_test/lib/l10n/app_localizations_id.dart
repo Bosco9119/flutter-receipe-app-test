@@ -43,6 +43,25 @@ class AppLocalizationsId extends AppLocalizations {
   String get login => 'Masuk';
 
   @override
+  String get loginUsernameLabel => 'Nama pengguna';
+
+  @override
+  String get loginPasswordLabel => 'Kata sandi';
+
+  @override
+  String get loginDemoHint => 'Petunjuk: demo / demo';
+
+  @override
+  String get loginOrDivider => 'atau';
+
+  @override
+  String get continueWithGoogle => 'Lanjutkan dengan Google';
+
+  @override
+  String get googleSignInFailed =>
+      'Masuk Google gagal. Periksa konfigurasi Firebase dan coba lagi.';
+
+  @override
   String get logout => 'Keluar';
 
   @override

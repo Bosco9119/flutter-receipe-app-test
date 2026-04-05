@@ -28,7 +28,7 @@ class RecipeApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) {
-            final vm = RecipeListViewModel(sl());
+            final vm = RecipeListViewModel(sl(), sl());
             unawaited(vm.initialize());
             return vm;
           },

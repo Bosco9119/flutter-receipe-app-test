@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/datasources/local/recipe_local_data_source.dart';
 import '../../data/datasources/local/recipe_type_asset_data_source.dart';
+import '../../data/datasources/remote/firebase_identity_data_source.dart';
+import '../../data/datasources/remote/firebase_identity_data_source_impl.dart';
 import '../../data/datasources/remote/recipe_remote_data_source.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 import '../../data/repositories/recipe_repository_impl.dart';
@@ -22,12 +24,24 @@ Future<void> configureDependencies({Uri? remoteRecipeTypesUrl}) async {
 
   sl.registerLazySingleton<CryptoService>(CryptoService.new);
 
+  sl.registerLazySingleton<FirebaseIdentityDataSource>(
+    FirebaseIdentityDataSourceImpl.new,
+  );
+
   await Hive.initFlutter();
   final recipeBox = await Hive.openBox<String>('recipe_app_storage');
   sl.registerSingleton<Box<String>>(recipeBox);
 
+  sl.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(
+      preferences: sl(),
+      crypto: sl(),
+      firebaseIdentity: sl(),
+    ),
+  );
+
   sl.registerLazySingleton<RecipeLocalDataSource>(
-    () => RecipeLocalDataSourceImpl(sl()),
+    () => RecipeLocalDataSourceImpl(sl(), sl()),
   );
   sl.registerLazySingleton<RecipeTypeAssetDataSource>(
     RecipeTypeAssetDataSourceImpl.new,
@@ -42,12 +56,6 @@ Future<void> configureDependencies({Uri? remoteRecipeTypesUrl}) async {
       local: sl(),
       typeAsset: sl(),
       remoteTypes: sl(),
-    ),
-  );
-  sl.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(
-      preferences: sl(),
-      crypto: sl(),
     ),
   );
 }

@@ -25,6 +25,8 @@ class AuthViewModel extends ChangeNotifier {
     return _repository.login(username: username, password: password);
   }
 
+  Future<void> signInWithGoogle() => _repository.signInWithGoogle();
+
   Future<void> logout() => _repository.logout();
 
   @override
