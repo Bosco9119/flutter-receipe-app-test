@@ -5,17 +5,26 @@ import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../core/constants/recipe_assets.dart';
+import '../../core/theme/app_gradients.dart';
 import '../../core/utils/prep_time_parse.dart';
 import '../../domain/entities/recipe_entity.dart';
+import '../../domain/entities/the_meal_db_import_prefill.dart';
 import '../../l10n/app_localizations.dart';
 import '../view_models/recipe_create_view_model.dart';
 import '../widgets/recipe_image_fill.dart';
 
 class RecipeCreatePage extends StatefulWidget {
-  const RecipeCreatePage({super.key, this.recipeBeingEdited});
+  const RecipeCreatePage({
+    super.key,
+    this.recipeBeingEdited,
+    this.theMealDbPrefill,
+  });
 
   /// When set, the form pre-fills and save updates this recipe (same id).
   final RecipeEntity? recipeBeingEdited;
+
+  /// Seeds the form from a discovered TheMealDB meal; user chooses type and prep time.
+  final TheMealDbImportPrefill? theMealDbPrefill;
 
   @override
   State<RecipeCreatePage> createState() => _RecipeCreatePageState();
@@ -24,11 +33,15 @@ class RecipeCreatePage extends StatefulWidget {
 class _RecipeCreatePageState extends State<RecipeCreatePage> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
+  final _descriptionController = TextEditingController();
   final _prepController = TextEditingController();
   final _servingsController = TextEditingController();
   String? _pickedImagePath;
   /// When editing, user cleared photo → save uses default image instead of previous path.
   bool _clearExistingImage = false;
+
+  /// When importing from TheMealDB, user cleared the suggested network image.
+  bool _clearImportImage = false;
   final List<TextEditingController> _ingredientControllers = [];
   final List<TextEditingController> _stepControllers = [];
 
@@ -38,8 +51,14 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
   void initState() {
     super.initState();
     final edit = widget.recipeBeingEdited;
+    final prefill = widget.theMealDbPrefill;
+    assert(
+      edit == null || prefill == null,
+      'recipeBeingEdited and theMealDbPrefill cannot both be set.',
+    );
     if (edit != null) {
       _titleController.text = edit.title;
+      _descriptionController.text = edit.description?.trim() ?? '';
       _prepController.text = '${edit.prepMinutes}';
       _servingsController.text = '${edit.servings}';
       for (final line in edit.ingredients) {
@@ -49,6 +68,23 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
         _ingredientControllers.add(TextEditingController());
       }
       for (final line in edit.steps) {
+        _stepControllers.add(TextEditingController(text: line));
+      }
+      if (_stepControllers.isEmpty) {
+        _stepControllers.add(TextEditingController());
+      }
+    } else if (prefill != null) {
+      _titleController.text = prefill.title;
+      _descriptionController.text = prefill.description?.trim() ?? '';
+      _prepController.text = '';
+      _servingsController.text = '4';
+      for (final line in prefill.ingredients) {
+        _ingredientControllers.add(TextEditingController(text: line));
+      }
+      if (_ingredientControllers.isEmpty) {
+        _ingredientControllers.add(TextEditingController());
+      }
+      for (final line in prefill.steps) {
         _stepControllers.add(TextEditingController(text: line));
       }
       if (_stepControllers.isEmpty) {
@@ -69,6 +105,7 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
   @override
   void dispose() {
     _titleController.dispose();
+    _descriptionController.dispose();
     _prepController.dispose();
     _servingsController.dispose();
     for (final c in _ingredientControllers) {
@@ -130,6 +167,9 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
       if (widget.recipeBeingEdited != null) {
         _clearExistingImage = true;
       }
+      if (widget.theMealDbPrefill != null) {
+        _clearImportImage = true;
+      }
     });
   }
 
@@ -177,20 +217,28 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
     final String imagePath;
     if (picked != null && picked.isNotEmpty) {
       imagePath = picked;
-    } else if (!_clearExistingImage) {
-      final prev = base?.imagePath?.trim();
+    } else if (base != null && !_clearExistingImage) {
+      final prev = base.imagePath?.trim();
       imagePath = (prev != null && prev.isNotEmpty)
           ? prev
+          : RecipeAssets.defaultRecipeImage;
+    } else if (widget.theMealDbPrefill != null && !_clearImportImage) {
+      final url = widget.theMealDbPrefill!.imageUrl?.trim();
+      imagePath = (url != null && url.isNotEmpty)
+          ? url
           : RecipeAssets.defaultRecipeImage;
     } else {
       imagePath = RecipeAssets.defaultRecipeImage;
     }
 
+    final descText = _descriptionController.text.trim();
     final recipe = RecipeEntity(
-      id: base?.id ?? 'local_${_uuid.v4()}',
+      id: base?.id ??
+          widget.theMealDbPrefill?.proposedRecipeId ??
+          'local_${_uuid.v4()}',
       typeId: vm.selectedTypeId!,
       title: _titleController.text.trim(),
-      description: base?.description,
+      description: descText.isEmpty ? null : descText,
       ingredients: ingredients,
       steps: steps,
       imagePath: imagePath,
@@ -234,6 +282,7 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                   scheme: scheme,
                   theme: theme,
                   isEditing: widget.recipeBeingEdited != null,
+                  isTheMealDbImport: widget.theMealDbPrefill != null,
                 ),
                 Expanded(
                   child: SingleChildScrollView(
@@ -258,6 +307,9 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                                     existingStoragePath: _clearExistingImage
                                         ? null
                                         : widget.recipeBeingEdited?.imagePath,
+                                    networkPrefillUrl: _clearImportImage
+                                        ? null
+                                        : widget.theMealDbPrefill?.imageUrl,
                                     onPickGallery: () =>
                                         _pickImage(ImageSource.gallery),
                                     onPickCamera: () =>
@@ -277,6 +329,19 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                                       }
                                       return null;
                                     },
+                                  ),
+                                  const SizedBox(height: 16),
+                                  TextFormField(
+                                    controller: _descriptionController,
+                                    decoration: InputDecoration(
+                                      labelText: l10n.recipeDescriptionLabel,
+                                      hintText: l10n.recipeDescriptionHint,
+                                      alignLabelWithHint: true,
+                                    ),
+                                    textInputAction: TextInputAction.newline,
+                                    keyboardType: TextInputType.multiline,
+                                    minLines: 2,
+                                    maxLines: 5,
                                   ),
                                   const SizedBox(height: 16),
                                   InputDecorator(
@@ -483,6 +548,7 @@ class _RecipePhotoSection extends StatelessWidget {
     required this.theme,
     required this.pickedPath,
     this.existingStoragePath,
+    this.networkPrefillUrl,
     required this.onPickGallery,
     required this.onPickCamera,
     required this.onClear,
@@ -493,6 +559,7 @@ class _RecipePhotoSection extends StatelessWidget {
   final ThemeData theme;
   final String? pickedPath;
   final String? existingStoragePath;
+  final String? networkPrefillUrl;
   final VoidCallback onPickGallery;
   final VoidCallback onPickCamera;
   final VoidCallback onClear;
@@ -549,6 +616,12 @@ class _RecipePhotoSection extends StatelessWidget {
                 TextButton(
                   onPressed: onClear,
                   child: Text(l10n.clearPhoto),
+                )
+              else if (networkPrefillUrl != null &&
+                  networkPrefillUrl!.trim().isNotEmpty)
+                TextButton(
+                  onPressed: onClear,
+                  child: Text(l10n.clearPhoto),
                 ),
             ],
           ),
@@ -569,6 +642,14 @@ class _RecipePhotoSection extends StatelessWidget {
               fontStyle: FontStyle.italic,
             ),
           ),
+          if (networkPrefillUrl != null &&
+              networkPrefillUrl!.trim().isNotEmpty) ...[
+            const SizedBox(height: 8),
+            TextButton(
+              onPressed: onClear,
+              child: Text(l10n.clearPhoto),
+            ),
+          ],
         ],
       ],
     );
@@ -582,6 +663,10 @@ class _RecipePhotoSection extends StatelessWidget {
     final existing = existingStoragePath?.trim();
     if (existing != null && existing.isNotEmpty) {
       return RecipeImageFill(imagePath: existing);
+    }
+    final network = networkPrefillUrl?.trim();
+    if (network != null && network.isNotEmpty) {
+      return RecipeImageFill(imagePath: network);
     }
     return Center(
       child: Icon(
@@ -599,44 +684,56 @@ class _CreateHeader extends StatelessWidget {
     required this.scheme,
     required this.theme,
     required this.isEditing,
+    required this.isTheMealDbImport,
   });
 
   final AppLocalizations l10n;
   final ColorScheme scheme;
   final ThemeData theme;
   final bool isEditing;
+  final bool isTheMealDbImport;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: scheme.primary,
-      child: SafeArea(
-        bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(8, 8, 16, 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextButton.icon(
-                onPressed: () => Navigator.of(context).pop(),
-                icon: Icon(Icons.arrow_back, color: scheme.onPrimary),
-                label: Text(
-                  l10n.backToRecipes,
-                  style: TextStyle(color: scheme.onPrimary),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: AppGradients.warmHeaderBanner(scheme),
+      ),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(
+          16,
+          MediaQuery.paddingOf(context).top + 12,
+          16,
+          16,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.white),
+              tooltip: l10n.backToRecipes,
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerLeft,
                 child: Text(
-                  isEditing ? l10n.editRecipeTitle : l10n.createRecipeTitle,
-                  style: theme.textTheme.headlineSmall?.copyWith(
+                  isEditing
+                      ? l10n.editRecipeTitle
+                      : isTheMealDbImport
+                          ? l10n.importRecipeTitle
+                          : l10n.createRecipeTitle,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.headlineMedium?.copyWith(
                     color: scheme.onPrimary,
                     fontWeight: FontWeight.bold,
+                    height: 1.12,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

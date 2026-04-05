@@ -34,7 +34,7 @@ class RecipeCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              flex: 5,
+              flex: 3,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
@@ -64,9 +64,9 @@ class RecipeCard extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 5,
+              flex: 2,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
+                padding: const EdgeInsets.fromLTRB(10, 6, 10, 6),
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     final compact = constraints.maxWidth < 170;
@@ -81,39 +81,27 @@ class RecipeCard extends StatelessWidget {
 
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Expanded(
-                          flex: hasDesc ? 5 : 3,
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              recipe.title,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: titleStyle,
-                            ),
-                          ),
+                        Text(
+                          recipe.title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: titleStyle,
                         ),
-                        if (hasDesc)
-                          Expanded(
-                            flex: 4,
-                            child: Align(
-                              alignment: Alignment.topLeft,
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 2),
-                                child: Text(
-                                  desc,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: theme.textTheme.bodySmall?.copyWith(
-                                    color: scheme.onSurfaceVariant,
-                                    height: 1.2,
-                                  ),
-                                ),
-                              ),
+                        if (hasDesc) ...[
+                          SizedBox(height: compact ? 3 : 4),
+                          Text(
+                            desc,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: scheme.onSurfaceVariant,
+                              height: 1.2,
                             ),
                           ),
-                        SizedBox(height: compact ? 4 : 6),
+                        ],
+                        SizedBox(height: compact ? 6 : 8),
                         Row(
                           children: [
                             Icon(

@@ -28,7 +28,12 @@ class AppSettingsViewModel extends ChangeNotifier {
   }
 
   Locale _readLocale() {
-    final code = _preferences.getString(StorageKeys.localeTag) ?? 'en';
+    var code = _preferences.getString(StorageKeys.localeTag) ?? 'en';
+    if (code == 'id') {
+      // Former Indonesian (`id`) locale replaced by Malay (`ms`).
+      code = 'ms';
+      _preferences.setString(StorageKeys.localeTag, code);
+    }
     return Locale(code);
   }
 

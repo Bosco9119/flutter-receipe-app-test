@@ -6,7 +6,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
-import 'app_localizations_id.dart';
+import 'app_localizations_ms.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -95,7 +96,8 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('id'),
+    Locale('ms'),
+    Locale('zh'),
   ];
 
   /// Application title
@@ -146,11 +148,17 @@ abstract class AppLocalizations {
   /// **'English'**
   String get english;
 
-  /// No description provided for @indonesian.
+  /// No description provided for @malay.
   ///
   /// In en, this message translates to:
-  /// **'Indonesian'**
-  String get indonesian;
+  /// **'Malay'**
+  String get malay;
+
+  /// No description provided for @chinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese (Simplified)'**
+  String get chinese;
 
   /// No description provided for @recipes.
   ///
@@ -254,11 +262,41 @@ abstract class AppLocalizations {
   /// **'Search recipes…'**
   String get searchRecipesHint;
 
-  /// No description provided for @filterRecipes.
+  /// No description provided for @sortRecipesTooltip.
   ///
   /// In en, this message translates to:
-  /// **'Filter by type'**
-  String get filterRecipes;
+  /// **'Sort recipes'**
+  String get sortRecipesTooltip;
+
+  /// No description provided for @sortSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get sortSheetTitle;
+
+  /// No description provided for @sortTitleAZ.
+  ///
+  /// In en, this message translates to:
+  /// **'Title A–Z'**
+  String get sortTitleAZ;
+
+  /// No description provided for @sortTitleZA.
+  ///
+  /// In en, this message translates to:
+  /// **'Title Z–A'**
+  String get sortTitleZA;
+
+  /// No description provided for @sortPrepShortFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Prep time (shortest first)'**
+  String get sortPrepShortFirst;
+
+  /// No description provided for @sortPrepLongFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Prep time (longest first)'**
+  String get sortPrepLongFirst;
 
   /// No description provided for @allTypes.
   ///
@@ -313,6 +351,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Recipe title *'**
   String get recipeTitleLabel;
+
+  /// No description provided for @recipeDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get recipeDescriptionLabel;
+
+  /// No description provided for @recipeDescriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional short summary (like bundled recipes.json).'**
+  String get recipeDescriptionHint;
 
   /// No description provided for @recipeTypeLabel.
   ///
@@ -685,6 +735,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'None'**
   String get cloudNoRecipesInSection;
+
+  /// No description provided for @settingsDiscoverSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get settingsDiscoverSection;
+
+  /// No description provided for @drawerDiscoverRecipes.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover random recipes'**
+  String get drawerDiscoverRecipes;
+
+  /// No description provided for @discoverRecipesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover recipes'**
+  String get discoverRecipesTitle;
+
+  /// No description provided for @discoverRecipesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Random meals from TheMealDB'**
+  String get discoverRecipesSubtitle;
+
+  /// No description provided for @discoverLoadTenButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Load 10 random recipes'**
+  String get discoverLoadTenButton;
+
+  /// No description provided for @discoverFetchProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} requests completed'**
+  String discoverFetchProgress(int done, int total);
+
+  /// No description provided for @discoverEmptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the button above to load ten random meals from TheMealDB (one request at a time).'**
+  String get discoverEmptyHint;
+
+  /// No description provided for @discoverErrorAllFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Every request failed. Check your connection and try again.'**
+  String get discoverErrorAllFailed;
+
+  /// No description provided for @discoverErrorNoRecipes.
+  ///
+  /// In en, this message translates to:
+  /// **'No recipes were returned. Try again.'**
+  String get discoverErrorNoRecipes;
+
+  /// No description provided for @discoverSomeRequestsFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 request failed}other{{count} requests failed}}'**
+  String discoverSomeRequestsFailed(int count);
+
+  /// No description provided for @discoverPrepOnImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Set prep time when you save'**
+  String get discoverPrepOnImport;
+
+  /// No description provided for @discoverServingsOnImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Set servings when you save'**
+  String get discoverServingsOnImport;
+
+  /// No description provided for @discoverUnknownCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'TheMealDB'**
+  String get discoverUnknownCategory;
+
+  /// No description provided for @discoverBackToList.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to discover'**
+  String get discoverBackToList;
+
+  /// No description provided for @discoverDetailImportCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to my recipes'**
+  String get discoverDetailImportCta;
+
+  /// No description provided for @importRecipeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to my recipes'**
+  String get importRecipeTitle;
+
+  /// No description provided for @importRecipeSavedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipe added to your collection.'**
+  String get importRecipeSavedMessage;
 }
 
 class _AppLocalizationsDelegate
@@ -698,7 +850,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'id'].contains(locale.languageCode);
+      <String>['en', 'ms', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -709,8 +861,10 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
-    case 'id':
-      return AppLocalizationsId();
+    case 'ms':
+      return AppLocalizationsMs();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(

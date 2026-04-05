@@ -25,4 +25,18 @@ abstract final class AppGradients {
     ],
     stops: [0.0, 0.55, 1.0],
   );
+
+  /// Warm horizontal strip for top-of-screen banners (recipe list, discover, etc.).
+  static LinearGradient warmHeaderBanner(ColorScheme scheme) {
+    return LinearGradient(
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+      colors: [
+        Color.lerp(scheme.primary, const Color(0xFF9A3412), 0.22)!,
+        scheme.primary,
+        Color.lerp(scheme.primary, const Color(0xFFF59E0B), 0.38)!,
+      ],
+      stops: const [0.0, 0.5, 1.0],
+    );
+  }
 }

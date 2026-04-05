@@ -34,7 +34,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get english => 'English';
 
   @override
-  String get indonesian => 'Indonesian';
+  String get malay => 'Malay';
+
+  @override
+  String get chinese => 'Chinese (Simplified)';
 
   @override
   String get recipes => 'Recipes';
@@ -99,7 +102,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchRecipesHint => 'Search recipes…';
 
   @override
-  String get filterRecipes => 'Filter by type';
+  String get sortRecipesTooltip => 'Sort recipes';
+
+  @override
+  String get sortSheetTitle => 'Sort by';
+
+  @override
+  String get sortTitleAZ => 'Title A–Z';
+
+  @override
+  String get sortTitleZA => 'Title Z–A';
+
+  @override
+  String get sortPrepShortFirst => 'Prep time (shortest first)';
+
+  @override
+  String get sortPrepLongFirst => 'Prep time (longest first)';
 
   @override
   String get allTypes => 'All Types';
@@ -152,6 +170,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get recipeTitleLabel => 'Recipe title *';
+
+  @override
+  String get recipeDescriptionLabel => 'Description';
+
+  @override
+  String get recipeDescriptionHint =>
+      'Optional short summary (like bundled recipes.json).';
 
   @override
   String get recipeTypeLabel => 'Recipe type *';
@@ -356,4 +381,67 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cloudNoRecipesInSection => 'None';
+
+  @override
+  String get settingsDiscoverSection => 'Explore';
+
+  @override
+  String get drawerDiscoverRecipes => 'Discover random recipes';
+
+  @override
+  String get discoverRecipesTitle => 'Discover recipes';
+
+  @override
+  String get discoverRecipesSubtitle => 'Random meals from TheMealDB';
+
+  @override
+  String get discoverLoadTenButton => 'Load 10 random recipes';
+
+  @override
+  String discoverFetchProgress(int done, int total) {
+    return '$done of $total requests completed';
+  }
+
+  @override
+  String get discoverEmptyHint =>
+      'Tap the button above to load ten random meals from TheMealDB (one request at a time).';
+
+  @override
+  String get discoverErrorAllFailed =>
+      'Every request failed. Check your connection and try again.';
+
+  @override
+  String get discoverErrorNoRecipes => 'No recipes were returned. Try again.';
+
+  @override
+  String discoverSomeRequestsFailed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count requests failed',
+      one: '1 request failed',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get discoverPrepOnImport => 'Set prep time when you save';
+
+  @override
+  String get discoverServingsOnImport => 'Set servings when you save';
+
+  @override
+  String get discoverUnknownCategory => 'TheMealDB';
+
+  @override
+  String get discoverBackToList => 'Back to discover';
+
+  @override
+  String get discoverDetailImportCta => 'Add to my recipes';
+
+  @override
+  String get importRecipeTitle => 'Add to my recipes';
+
+  @override
+  String get importRecipeSavedMessage => 'Recipe added to your collection.';
 }

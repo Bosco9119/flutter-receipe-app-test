@@ -1,0 +1,185 @@
+{
+  "@@locale": "ms",
+  "appTitle": "Buku Resipi",
+  "architecturePreview": "Lapisan seni bina telah disambungkan. Aliran resipi akan disambungkan di sini.",
+  "themeSection": "Penampilan",
+  "themeLight": "Cerah",
+  "themeDark": "Gelap",
+  "themeSystem": "Sistem",
+  "language": "Bahasa",
+  "english": "Bahasa Inggeris",
+  "malay": "Bahasa Melayu",
+  "chinese": "Cina (Ringkas)",
+  "recipes": "Resipi",
+  "login": "Log masuk",
+  "loginUsernameLabel": "Nama pengguna",
+  "loginPasswordLabel": "Kata laluan",
+  "loginDemoHint": "Petunjuk: demo / demo",
+  "loginOrDivider": "atau",
+  "continueWithGoogle": "Teruskan dengan Google",
+  "googleSignInFailed": "Log masuk Google gagal. Semak konfigurasi Firebase dan cuba lagi.",
+  "logout": "Log keluar",
+  "settings": "Tetapan",
+  "settingsDrawerLocalOnly": "Log masuk tempatan (tiada Gmail pada akaun ini)",
+  "home": "Laman utama",
+  "streamDemoTitle": "Kiraan resipi langsung (strim reaktif)",
+  "recipeCount": "{count, plural, =0{Tiada resipi}=1{1 resipi}other{{count} resipi}}",
+  "@recipeCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "myRecipes": "Resipi Saya",
+  "myRecipesSubtitle": "Cari dan urus resipi kegemaran anda",
+  "searchRecipesHint": "Cari resipi…",
+  "sortRecipesTooltip": "Isih resipi",
+  "sortSheetTitle": "Isih mengikut",
+  "sortTitleAZ": "Tajuk A–Z",
+  "sortTitleZA": "Tajuk Z–A",
+  "sortPrepShortFirst": "Masa penyediaan (paling pendek dahulu)",
+  "sortPrepLongFirst": "Masa penyediaan (paling panjang dahulu)",
+  "allTypes": "Semua jenis",
+  "newRecipe": "Resipi baharu",
+  "recipesFound": "{count, plural, =0{Tiada resipi dijumpai}=1{1 resipi dijumpai}other{{count} resipi dijumpai}}",
+  "@recipesFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "prepTimeMinutes": "{minutes, plural, =1{1 minit}other{{minutes} minit}}",
+  "@prepTimeMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "servingsCount": "{count, plural, =1{1 hidangan}other{{count} hidangan}}",
+  "@servingsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noRecipesMatch": "Tiada resipi yang sepadan dengan carian atau tapisan anda.",
+  "backToRecipes": "Kembali ke resipi",
+  "createRecipeTitle": "Cipta resipi baharu",
+  "recipeTitleLabel": "Tajuk resipi *",
+  "recipeDescriptionLabel": "Penerangan",
+  "recipeDescriptionHint": "Ringkasan ringkas (pilihan), seperti dalam recipes.json.",
+  "recipeTypeLabel": "Jenis resipi *",
+  "selectRecipeTypeHint": "Pilih jenis",
+  "prepTimeLabel": "Masa penyediaan *",
+  "prepTimeHint": "cth. 30 atau 30 minit",
+  "servingsLabel": "Hidangan *",
+  "servingsHint": "cth. 4",
+  "prepTimeInvalid": "Masukkan masa penyediaan dengan nombor (cth. 15 atau 20 min).",
+  "servingsInvalid": "Masukkan nombor bulat ≥ 1.",
+  "fieldRequired": "Wajib",
+  "recipePhotoLabel": "Foto resipi",
+  "recipePhotoHelper": "Pilihan. Pilih dari galeri atau kamera pada telefon. Jika dilangkau, imej lalai digunakan.",
+  "recipePhotoWebNote": "Pemilih foto tersedia pada aplikasi mudah alih/desktop. Di web, imej lalai digunakan melainkan dibina untuk platform dengan galeri/kamera.",
+  "pickFromGallery": "Galeri",
+  "takePhoto": "Kamera",
+  "clearPhoto": "Buang foto",
+  "ingredientsSectionLabel": "Bahan *",
+  "addIngredient": "+ Tambah bahan",
+  "ingredientHint": "Bahan {n}",
+  "@ingredientHint": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "stepsSectionLabel": "Langkah *",
+  "addStep": "+ Tambah langkah",
+  "stepHint": "Langkah {n}",
+  "@stepHint": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "cancel": "Batal",
+  "dialogConfirm": "Sahkan",
+  "createRecipeSubmit": "Cipta resipi",
+  "createRecipeFailed": "Tidak dapat menyimpan resipi.",
+  "recipeTypeRequired": "Pilih jenis resipi.",
+  "ingredientsRequired": "Tambah sekurang-kurangnya satu bahan.",
+  "stepsRequired": "Tambah sekurang-kurangnya satu langkah.",
+  "recipeNotFound": "Resipi tidak dijumpai",
+  "recipeNotFoundMessage": "Resipi ini mungkin telah dipadam atau tidak lagi tersedia.",
+  "editRecipe": "Sunting",
+  "deleteRecipe": "Padam",
+  "deleteRecipeTitle": "Padam resipi?",
+  "deleteRecipeMessage": "Tindakan ini tidak boleh dibuat asal. Resipi akan dialih keluar daripada peranti anda.",
+  "deleteRecipeConfirm": "Padam",
+  "deleteRecipeFailed": "Tidak dapat memadam resipi.",
+  "ingredientsHeading": "Bahan",
+  "instructionsHeading": "Cara penyediaan",
+  "recipeUpdated": "Resipi dikemas kini.",
+  "editRecipeTitle": "Sunting resipi",
+  "saveRecipeChanges": "Simpan perubahan",
+  "settingsCloudBackupSection": "Sandaran awan",
+  "settingsSyncToCloud": "Segerak ke awan",
+  "settingsRestoreFromCloud": "Pulihkan dari awan",
+  "cloudSyncRequiresGoogle": "Log masuk dengan Google untuk sandaran awan.",
+  "cloudSyncDialogTitle": "Segerak ke awan",
+  "cloudSyncDialogSubtitle": "Awan akan sepadan dengan peranti: muat naik, kemas kini, dan buang resipi awan yang tidak ada pada peranti.",
+  "cloudRestoreDialogTitle": "Pulihkan dari awan",
+  "cloudRestoreDialogSubtitle": "Peranti akan sepadan dengan awan: muat turun, kemas kini, dan buang resipi tempatan yang tidak ada di awan.",
+  "cloudDiffLoading": "Membandingkan peranti dan awan…",
+  "cloudDiffOnlyOnDeviceSync": "Hanya pada peranti — akan dimuat naik ke awan",
+  "cloudDiffOnlyInCloudSync": "Hanya di awan — akan dibuang dari awan",
+  "cloudDiffOnBothSync": "Kedua-duanya — salinan awan diganti dari peranti",
+  "cloudDiffOnlyOnDeviceRestore": "Hanya pada peranti — akan dibuang dari peranti",
+  "cloudDiffOnlyInCloudRestore": "Hanya di awan — akan dimuat turun ke peranti",
+  "cloudDiffOnBothRestore": "Kedua-duanya — salinan peranti diganti dari awan",
+  "cloudSyncRunConfirm": "Gunakan segerak",
+  "cloudRestoreRunConfirm": "Gunakan pemulihan",
+  "cloudBackupCancel": "Batal",
+  "cloudBackupDone": "Sandaran awan dikemas kini.",
+  "cloudRestoreDone": "Dipulihkan dari awan.",
+  "cloudNoRecipesInSection": "Tiada",
+  "settingsDiscoverSection": "Terokai",
+  "drawerDiscoverRecipes": "Cari resipi rawak",
+  "discoverRecipesTitle": "Cari resipi",
+  "discoverRecipesSubtitle": "Hidangan rawak dari TheMealDB",
+  "discoverLoadTenButton": "Muat 10 resipi rawak",
+  "discoverFetchProgress": "{done} daripada {total} permintaan selesai",
+  "@discoverFetchProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "discoverEmptyHint": "Ketik butang di atas untuk memuat sepuluh hidangan rawak dari TheMealDB (satu permintaan demi satu).",
+  "discoverErrorAllFailed": "Semua permintaan gagal. Semak sambungan dan cuba lagi.",
+  "discoverErrorNoRecipes": "Tiada resipi dikembalikan. Cuba lagi.",
+  "discoverSomeRequestsFailed": "{count, plural, =1{1 permintaan gagal}other{{count} permintaan gagal}}",
+  "@discoverSomeRequestsFailed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoverPrepOnImport": "Tetapkan masa penyediaan semasa menyimpan",
+  "discoverServingsOnImport": "Tetapkan hidangan semasa menyimpan",
+  "discoverUnknownCategory": "TheMealDB",
+  "discoverBackToList": "Kembali ke carian",
+  "discoverDetailImportCta": "Tambah ke resipi saya",
+  "importRecipeTitle": "Tambah ke resipi saya",
+  "importRecipeSavedMessage": "Resipi ditambah ke koleksi anda."
+}

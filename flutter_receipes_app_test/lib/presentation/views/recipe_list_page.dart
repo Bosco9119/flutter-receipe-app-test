@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/di/injection.dart';
+import '../../core/theme/app_gradients.dart';
+import '../../domain/entities/recipe_list_sort.dart';
 import '../../l10n/app_localizations.dart';
+import '../view_models/discover_recipe_view_model.dart';
 import '../view_models/recipe_create_view_model.dart';
 import '../view_models/recipe_detail_view_model.dart';
 import '../view_models/recipe_list_view_model.dart';
 import '../widgets/app_settings_drawer.dart';
 import '../widgets/recipe_card.dart';
+import 'discover_recipes_page.dart';
 import 'recipe_create_page.dart';
 import 'recipe_detail_page.dart';
 
@@ -27,6 +31,21 @@ class RecipeListPage extends StatelessWidget {
       body: vm.isReady
           ? _RecipeListBody(l10n: l10n)
           : const Center(child: CircularProgressIndicator()),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push<void>(
+            MaterialPageRoute<void>(
+              builder: (_) => ChangeNotifierProvider(
+                create: (_) =>
+                    DiscoverRecipeViewModel(sl())..resetForNewSession(),
+                child: const DiscoverRecipesPage(),
+              ),
+            ),
+          );
+        },
+        tooltip: l10n.drawerDiscoverRecipes,
+        child: const Icon(Icons.public),
+      ),
     );
   }
 }
@@ -74,7 +93,7 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final wide = constraints.maxWidth >= 560;
@@ -88,10 +107,10 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
                     contentPadding: const EdgeInsets.symmetric(vertical: 14),
                   ),
                 );
-                final filterButton = IconButton.filledTonal(
-                  onPressed: () => _openFilterSheet(context, vm, l10n),
+                final sortButton = IconButton.filledTonal(
+                  onPressed: () => _openSortSheet(context, vm, l10n),
                   icon: const Icon(Icons.filter_list),
-                  tooltip: l10n.filterRecipes,
+                  tooltip: l10n.sortRecipesTooltip,
                 );
                 final dropdown = _TypeDropdown(
                   l10n: l10n,
@@ -104,25 +123,25 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
                     children: [
                       Expanded(child: searchField),
                       const SizedBox(width: 8),
-                      filterButton,
-                      const SizedBox(width: 8),
                       SizedBox(width: 200, child: dropdown),
+                      const SizedBox(width: 8),
+                      sortButton,
                     ],
                   );
                 }
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    searchField,
+                    const SizedBox(height: 12),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(child: searchField),
-                        const SizedBox(width: 4),
-                        filterButton,
+                        Expanded(child: dropdown),
+                        const SizedBox(width: 8),
+                        sortButton,
                       ],
                     ),
-                    const SizedBox(height: 12),
-                    dropdown,
                   ],
                 );
               },
@@ -225,19 +244,19 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
     return 1;
   }
 
-  /// Taller tiles for multi-column grids so text + meta stay within bounds on narrow cells.
+  /// Width/height of each grid child. Higher value → shorter tiles, less empty space under text.
   double _gridChildAspectRatio(BuildContext context) {
     switch (_gridColumnCount(context)) {
       case 3:
-        return 0.64;
-      case 2:
-        return 0.50;
-      default:
         return 0.72;
+      case 2:
+        return 0.62;
+      default:
+        return 0.80;
     }
   }
 
-  void _openFilterSheet(
+  void _openSortSheet(
     BuildContext context,
     RecipeListViewModel vm,
     AppLocalizations l10n,
@@ -246,34 +265,25 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
       context: context,
       showDragHandle: true,
       builder: (ctx) {
+        final scheme = Theme.of(ctx).colorScheme;
         return SafeArea(
           child: ListView(
             children: [
-              ListTile(
-                title: Text(l10n.allTypes),
-                trailing: vm.selectedTypeId == null
-                    ? Icon(
-                        Icons.check,
-                        color: Theme.of(ctx).colorScheme.primary,
-                      )
-                    : null,
-                onTap: () {
-                  vm.setSelectedTypeId(null);
-                  Navigator.pop(ctx);
-                },
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+                child: Text(
+                  l10n.sortSheetTitle,
+                  style: Theme.of(ctx).textTheme.titleMedium,
+                ),
               ),
-              const Divider(height: 1),
-              ...vm.recipeTypes.map(
-                (t) => ListTile(
-                  title: Text(t.icon != null ? '${t.icon} ${t.name}' : t.name),
-                  trailing: vm.selectedTypeId == t.id
-                      ? Icon(
-                          Icons.check,
-                          color: Theme.of(ctx).colorScheme.primary,
-                        )
+              ...RecipeListSort.values.map(
+                (mode) => ListTile(
+                  title: Text(_sortOptionLabel(mode, l10n)),
+                  trailing: vm.sort == mode
+                      ? Icon(Icons.check, color: scheme.primary)
                       : null,
                   onTap: () {
-                    vm.setSelectedTypeId(t.id);
+                    vm.setSort(mode);
                     Navigator.pop(ctx);
                   },
                 ),
@@ -283,6 +293,19 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
         );
       },
     );
+  }
+
+  String _sortOptionLabel(RecipeListSort mode, AppLocalizations l10n) {
+    switch (mode) {
+      case RecipeListSort.titleAscending:
+        return l10n.sortTitleAZ;
+      case RecipeListSort.titleDescending:
+        return l10n.sortTitleZA;
+      case RecipeListSort.prepTimeAscending:
+        return l10n.sortPrepShortFirst;
+      case RecipeListSort.prepTimeDescending:
+        return l10n.sortPrepLongFirst;
+    }
   }
 }
 
@@ -305,21 +328,13 @@ class _ListHeader extends StatelessWidget {
         16,
         MediaQuery.paddingOf(context).top + 12,
         16,
-        24,
+        16,
       ),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            scheme.primary,
-            Color.lerp(scheme.primary, scheme.primaryContainer, 0.35)!,
-            scheme.tertiary,
-          ],
-        ),
+        gradient: AppGradients.warmHeaderBanner(scheme),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Builder(
             builder: (ctx) {
@@ -331,24 +346,30 @@ class _ListHeader extends StatelessWidget {
             },
           ),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.myRecipes,
-                  style: theme.textTheme.headlineMedium?.copyWith(
-                    color: scheme.onPrimary,
-                    fontWeight: FontWeight.bold,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.myRecipes,
+                    style: theme.textTheme.headlineMedium?.copyWith(
+                      color: scheme.onPrimary,
+                      fontWeight: FontWeight.bold,
+                      height: 1.12,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  l10n.myRecipesSubtitle,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    color: scheme.onPrimary.withValues(alpha: 0.92),
+                  const SizedBox(height: 2),
+                  Text(
+                    l10n.myRecipesSubtitle,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      color: scheme.onPrimary.withValues(alpha: 0.92),
+                      height: 1.25,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

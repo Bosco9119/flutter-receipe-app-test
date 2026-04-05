@@ -84,10 +84,18 @@ class AppSettingsDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text(l10n.indonesian),
-              selected: settings.locale.languageCode == 'id',
+              title: Text(l10n.malay),
+              selected: settings.locale.languageCode == 'ms',
               onTap: () {
-                settings.setLocale(const Locale('id'));
+                settings.setLocale(const Locale('ms'));
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: Text(l10n.chinese),
+              selected: settings.locale.languageCode == 'zh',
+              onTap: () {
+                settings.setLocale(const Locale('zh'));
                 Navigator.of(context).pop();
               },
             ),

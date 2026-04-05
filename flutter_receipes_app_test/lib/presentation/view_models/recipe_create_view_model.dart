@@ -8,10 +8,14 @@ class RecipeCreateViewModel extends ChangeNotifier {
   RecipeCreateViewModel(
     this._repository, {
     this.initialTypeId,
+    this.requireUserToPickRecipeType = false,
   });
 
   final RecipeRepository _repository;
   final String? initialTypeId;
+
+  /// When true (e.g. TheMealDB import), no default type is selected after types load.
+  final bool requireUserToPickRecipeType;
 
   List<RecipeTypeEntity> _types = [];
   bool _loadingTypes = true;
@@ -34,8 +38,10 @@ class RecipeCreateViewModel extends ChangeNotifier {
       final preset = initialTypeId;
       if (preset != null && _types.any((t) => t.id == preset)) {
         _selectedTypeId = preset;
-      } else {
+      } else if (!requireUserToPickRecipeType) {
         _selectedTypeId ??= _types.isNotEmpty ? _types.first.id : null;
+      } else {
+        _selectedTypeId = null;
       }
     } catch (e) {
       _lastError = e.toString();

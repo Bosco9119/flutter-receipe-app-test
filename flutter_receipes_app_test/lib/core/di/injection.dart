@@ -9,10 +9,14 @@ import '../../data/datasources/remote/firebase_identity_data_source_impl.dart';
 import '../../data/datasources/remote/recipe_firestore_data_source.dart';
 import '../../data/datasources/remote/recipe_firestore_data_source_impl.dart';
 import '../../data/datasources/remote/recipe_remote_data_source.dart';
+import '../../data/datasources/remote/the_meal_db_remote_data_source.dart';
+import '../../data/datasources/remote/the_meal_db_remote_data_source_impl.dart';
 import '../../data/repositories/auth_repository_impl.dart';
+import '../../data/repositories/discover_recipe_repository_impl.dart';
 import '../../data/repositories/recipe_cloud_sync_repository_impl.dart';
 import '../../data/repositories/recipe_repository_impl.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../../domain/repositories/discover_recipe_repository.dart';
 import '../../domain/repositories/recipe_cloud_sync_repository.dart';
 import '../../domain/repositories/recipe_repository.dart';
 import '../security/crypto_service.dart';
@@ -51,24 +55,22 @@ Future<void> configureDependencies({Uri? remoteRecipeTypesUrl}) async {
     RecipeTypeAssetDataSourceImpl.new,
   );
   sl.registerLazySingleton<RecipeRemoteDataSource>(
-    () => RecipeRemoteDataSourceImpl(
-      typesUrl: remoteRecipeTypesUrl,
-    ),
+    () => RecipeRemoteDataSourceImpl(typesUrl: remoteRecipeTypesUrl),
+  );
+  sl.registerLazySingleton<TheMealDbRemoteDataSource>(
+    TheMealDbRemoteDataSourceImpl.new,
+  );
+  sl.registerLazySingleton<DiscoverRecipeRepository>(
+    () => DiscoverRecipeRepositoryImpl(remote: sl()),
   );
   sl.registerLazySingleton<RecipeRepository>(
-    () => RecipeRepositoryImpl(
-      local: sl(),
-      typeAsset: sl(),
-      remoteTypes: sl(),
-    ),
+    () => RecipeRepositoryImpl(local: sl(), typeAsset: sl(), remoteTypes: sl()),
   );
   sl.registerLazySingleton<RecipeFirestoreDataSource>(
     RecipeFirestoreDataSourceImpl.new,
   );
   sl.registerLazySingleton<RecipeCloudSyncRepository>(
-    () => RecipeCloudSyncRepositoryImpl(
-      firestore: sl(),
-      recipeRepository: sl(),
-    ),
+    () =>
+        RecipeCloudSyncRepositoryImpl(firestore: sl(), recipeRepository: sl()),
   );
 }

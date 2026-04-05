@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/di/injection.dart';
+import '../../core/theme/app_gradients.dart';
 import '../../domain/entities/recipe_entity.dart';
 import '../../l10n/app_localizations.dart';
 import '../view_models/recipe_create_view_model.dart';
@@ -33,6 +34,7 @@ class RecipeDetailPage extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
+            tooltip: MaterialLocalizations.of(context).backButtonTooltip,
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: Text(l10n.recipeNotFound),
@@ -58,62 +60,64 @@ class RecipeDetailPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Material(
-            color: scheme.primary,
-            child: SafeArea(
-              bottom: false,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(4, 4, 8, 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextButton.icon(
-                          onPressed: () => Navigator.of(context).pop(),
-                          icon: Icon(Icons.arrow_back, color: scheme.onPrimary),
-                          label: Text(
-                            l10n.backToRecipes,
-                            style: TextStyle(color: scheme.onPrimary),
-                          ),
-                        ),
-                        const Spacer(),
-                        IconButton.filledTonal(
-                          style: IconButton.styleFrom(
-                            backgroundColor:
-                                scheme.onPrimary.withValues(alpha: 0.22),
-                            foregroundColor: scheme.onPrimary,
-                          ),
-                          onPressed: () => _openEdit(context, recipe),
-                          tooltip: l10n.editRecipe,
-                          icon: const Icon(Icons.edit_outlined),
-                        ),
-                        const SizedBox(width: 4),
-                        IconButton.filledTonal(
-                          style: IconButton.styleFrom(
-                            backgroundColor:
-                                scheme.onPrimary.withValues(alpha: 0.22),
-                            foregroundColor: scheme.onPrimary,
-                          ),
-                          onPressed: () => _confirmDelete(context),
-                          tooltip: l10n.deleteRecipe,
-                          icon: const Icon(Icons.delete_outline),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: AppGradients.warmHeaderBanner(scheme),
+            ),
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(
+                16,
+                MediaQuery.paddingOf(context).top + 12,
+                16,
+                16,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+                    tooltip: l10n.backToRecipes,
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
                       child: Text(
                         recipe.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: theme.textTheme.headlineSmall?.copyWith(
                           color: scheme.onPrimary,
                           fontWeight: FontWeight.bold,
+                          height: 1.12,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  IconButton.filledTonal(
+                    style: IconButton.styleFrom(
+                      backgroundColor: scheme.onPrimary.withValues(
+                        alpha: 0.22,
+                      ),
+                      foregroundColor: scheme.onPrimary,
+                    ),
+                    onPressed: () => _openEdit(context, recipe),
+                    tooltip: l10n.editRecipe,
+                    icon: const Icon(Icons.edit_outlined),
+                  ),
+                  const SizedBox(width: 4),
+                  IconButton.filledTonal(
+                    style: IconButton.styleFrom(
+                      backgroundColor: scheme.onPrimary.withValues(
+                        alpha: 0.22,
+                      ),
+                      foregroundColor: scheme.onPrimary,
+                    ),
+                    onPressed: () => _confirmDelete(context),
+                    tooltip: l10n.deleteRecipe,
+                    icon: const Icon(Icons.delete_outline),
+                  ),
+                ],
               ),
             ),
           ),
@@ -157,8 +161,8 @@ class RecipeDetailPage extends StatelessWidget {
                                           typeLabel,
                                           style: theme.textTheme.labelLarge
                                               ?.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -210,8 +214,8 @@ class RecipeDetailPage extends StatelessWidget {
                                           ),
                                           style: theme.textTheme.bodyLarge
                                               ?.copyWith(
-                                            color: scheme.onSurfaceVariant,
-                                          ),
+                                                color: scheme.onSurfaceVariant,
+                                              ),
                                         ),
                                       ),
                                       Icon(
@@ -225,8 +229,8 @@ class RecipeDetailPage extends StatelessWidget {
                                           l10n.servingsCount(recipe.servings),
                                           style: theme.textTheme.bodyLarge
                                               ?.copyWith(
-                                            color: scheme.onSurfaceVariant,
-                                          ),
+                                                color: scheme.onSurfaceVariant,
+                                              ),
                                         ),
                                       ),
                                     ],
@@ -234,10 +238,7 @@ class RecipeDetailPage extends StatelessWidget {
                                 },
                               ),
                             ),
-                            Divider(
-                              height: 1,
-                              color: scheme.outlineVariant,
-                            ),
+                            Divider(height: 1, color: scheme.outlineVariant),
                             if (recipe.description != null &&
                                 recipe.description!.trim().isNotEmpty)
                               Padding(
@@ -322,9 +323,9 @@ class RecipeDetailPage extends StatelessWidget {
                                         '$n',
                                         style: theme.textTheme.labelLarge
                                             ?.copyWith(
-                                          color: scheme.onPrimary,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                              color: scheme.onPrimary,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                       ),
                                     ),
                                     const SizedBox(width: 12),
@@ -377,9 +378,9 @@ class RecipeDetailPage extends StatelessWidget {
     if (deleted) {
       Navigator.of(context).pop(true);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.deleteRecipeFailed)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.deleteRecipeFailed)));
     }
   }
 
@@ -387,10 +388,9 @@ class RecipeDetailPage extends StatelessWidget {
     final changed = await Navigator.of(context).push<bool>(
       MaterialPageRoute<bool>(
         builder: (_) => ChangeNotifierProvider(
-          create: (_) => RecipeCreateViewModel(
-            sl(),
-            initialTypeId: recipe.typeId,
-          )..loadTypes(),
+          create: (_) =>
+              RecipeCreateViewModel(sl(), initialTypeId: recipe.typeId)
+                ..loadTypes(),
           child: RecipeCreatePage(recipeBeingEdited: recipe),
         ),
       ),
@@ -420,11 +420,7 @@ class _MetaRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          icon,
-          size: 22,
-          color: scheme.onSurfaceVariant,
-        ),
+        Icon(icon, size: 22, color: scheme.onSurfaceVariant),
         const SizedBox(width: 8),
         Expanded(
           child: Text(

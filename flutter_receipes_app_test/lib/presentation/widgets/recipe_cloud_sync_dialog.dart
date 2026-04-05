@@ -56,17 +56,21 @@ class _RecipeCloudBackupDialogBody extends StatelessWidget {
 
     final isSync = mode == CloudSyncMode.sync;
     final headerIcon = isSync ? Icons.cloud_upload_rounded : Icons.cloud_download_rounded;
-    final headerGradient = isSync
-        ? [scheme.primaryContainer, scheme.primary.withValues(alpha: 0.22)]
-        : [scheme.tertiaryContainer, scheme.tertiary.withValues(alpha: 0.18)];
+    final headerGradient = [
+      scheme.primaryContainer,
+      Color.lerp(scheme.primaryContainer, scheme.primary, 0.5)!
+          .withValues(alpha: isSync ? 0.95 : 0.88),
+    ];
+
+    final maxDialogHeight = MediaQuery.sizeOf(context).height * 0.88;
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
       clipBehavior: Clip.antiAlias,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 400),
+        constraints: BoxConstraints(maxWidth: 400, maxHeight: maxDialogHeight),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             DecoratedBox(
@@ -98,7 +102,7 @@ class _RecipeCloudBackupDialogBody extends StatelessWidget {
                       child: Icon(
                         headerIcon,
                         size: 32,
-                        color: isSync ? scheme.primary : scheme.tertiary,
+                        color: scheme.primary,
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -129,33 +133,39 @@ class _RecipeCloudBackupDialogBody extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+            Expanded(
               child: vm.loading
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 18),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 48,
-                            width: 48,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 3,
-                              color: scheme.primary,
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 18,
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              height: 48,
+                              width: 48,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 3,
+                                color: scheme.primary,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            l10n.cloudDiffLoading,
-                            textAlign: TextAlign.center,
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: scheme.onSurfaceVariant,
+                            const SizedBox(height: 16),
+                            Text(
+                              l10n.cloudDiffLoading,
+                              textAlign: TextAlign.center,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: scheme.onSurfaceVariant,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     )
                   : SingleChildScrollView(
+                      padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         mainAxisSize: MainAxisSize.min,

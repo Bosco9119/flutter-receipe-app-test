@@ -1,0 +1,185 @@
+{
+  "@@locale": "zh",
+  "appTitle": "食谱本",
+  "architecturePreview": "架构层已连接，食谱流程将在此处接入。",
+  "themeSection": "外观",
+  "themeLight": "浅色",
+  "themeDark": "深色",
+  "themeSystem": "跟随系统",
+  "language": "语言",
+  "english": "英语",
+  "malay": "马来语",
+  "chinese": "简体中文",
+  "recipes": "食谱",
+  "login": "登录",
+  "loginUsernameLabel": "用户名",
+  "loginPasswordLabel": "密码",
+  "loginDemoHint": "提示：demo / demo",
+  "loginOrDivider": "或",
+  "continueWithGoogle": "使用 Google 继续",
+  "googleSignInFailed": "Google 登录失败。请检查 Firebase 配置后重试。",
+  "logout": "退出登录",
+  "settings": "设置",
+  "settingsDrawerLocalOnly": "本地登录（此账号未绑定 Gmail）",
+  "home": "首页",
+  "streamDemoTitle": "实时食谱数量（响应式流）",
+  "recipeCount": "{count, plural, =0{没有食谱}=1{1 道食谱}other{{count} 道食谱}}",
+  "@recipeCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "myRecipes": "我的食谱",
+  "myRecipesSubtitle": "发现与管理你喜爱的食谱",
+  "searchRecipesHint": "搜索食谱…",
+  "sortRecipesTooltip": "排序食谱",
+  "sortSheetTitle": "排序方式",
+  "sortTitleAZ": "标题 A–Z",
+  "sortTitleZA": "标题 Z–A",
+  "sortPrepShortFirst": "准备时间（由短到长）",
+  "sortPrepLongFirst": "准备时间（由长到短）",
+  "allTypes": "全部类型",
+  "newRecipe": "新建食谱",
+  "recipesFound": "{count, plural, =0{未找到食谱}=1{找到 1 道食谱}other{找到 {count} 道食谱}}",
+  "@recipesFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "prepTimeMinutes": "{minutes, plural, =1{1 分钟}other{{minutes} 分钟}}",
+  "@prepTimeMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "servingsCount": "{count, plural, =1{1 人份}other{{count} 人份}}",
+  "@servingsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noRecipesMatch": "没有符合搜索或筛选条件的食谱。",
+  "backToRecipes": "返回食谱列表",
+  "createRecipeTitle": "创建新食谱",
+  "recipeTitleLabel": "食谱标题 *",
+  "recipeDescriptionLabel": "描述",
+  "recipeDescriptionHint": "可选简短摘要（与内置 recipes.json 类似）。",
+  "recipeTypeLabel": "食谱类型 *",
+  "selectRecipeTypeHint": "选择类型",
+  "prepTimeLabel": "准备时间 *",
+  "prepTimeHint": "例如：30 或 30 分钟",
+  "servingsLabel": "份数 *",
+  "servingsHint": "例如：4",
+  "prepTimeInvalid": "请输入包含数字的准备时间（例如 15 或 20 分钟）。",
+  "servingsInvalid": "请输入大于等于 1 的整数。",
+  "fieldRequired": "必填",
+  "recipePhotoLabel": "食谱照片",
+  "recipePhotoHelper": "可选。可在手机上从相册或相机选择。若跳过，将使用默认图片。",
+  "recipePhotoWebNote": "照片选择在移动与桌面应用中可用。此处除非针对带相册/相机的平台构建，否则将使用默认图片。",
+  "pickFromGallery": "相册",
+  "takePhoto": "拍照",
+  "clearPhoto": "移除照片",
+  "ingredientsSectionLabel": "食材 *",
+  "addIngredient": "+ 添加食材",
+  "ingredientHint": "食材 {n}",
+  "@ingredientHint": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "stepsSectionLabel": "步骤 *",
+  "addStep": "+ 添加步骤",
+  "stepHint": "步骤 {n}",
+  "@stepHint": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "cancel": "取消",
+  "dialogConfirm": "确认",
+  "createRecipeSubmit": "创建食谱",
+  "createRecipeFailed": "无法保存食谱。",
+  "recipeTypeRequired": "请选择食谱类型。",
+  "ingredientsRequired": "请至少添加一项食材。",
+  "stepsRequired": "请至少添加一个步骤。",
+  "recipeNotFound": "未找到食谱",
+  "recipeNotFoundMessage": "该食谱可能已被删除或不再可用。",
+  "editRecipe": "编辑",
+  "deleteRecipe": "删除",
+  "deleteRecipeTitle": "删除食谱？",
+  "deleteRecipeMessage": "此操作无法撤销。食谱将从本机移除。",
+  "deleteRecipeConfirm": "删除",
+  "deleteRecipeFailed": "无法删除食谱。",
+  "ingredientsHeading": "食材",
+  "instructionsHeading": "做法",
+  "recipeUpdated": "食谱已更新。",
+  "editRecipeTitle": "编辑食谱",
+  "saveRecipeChanges": "保存更改",
+  "settingsCloudBackupSection": "云备份",
+  "settingsSyncToCloud": "同步到云端",
+  "settingsRestoreFromCloud": "从云端恢复",
+  "cloudSyncRequiresGoogle": "请使用 Google 登录以使用云备份。",
+  "cloudSyncDialogTitle": "同步到云端",
+  "cloudSyncDialogSubtitle": "云端将与本机一致：上传、更新，并删除云端多余的食谱。",
+  "cloudRestoreDialogTitle": "从云端恢复",
+  "cloudRestoreDialogSubtitle": "本机将与云端一致：下载、更新，并删除本机多余的食谱。",
+  "cloudDiffLoading": "正在对比本机与云端…",
+  "cloudDiffOnlyOnDeviceSync": "仅在本机 — 将上传到云端",
+  "cloudDiffOnlyInCloudSync": "仅在云端 — 将从云端删除",
+  "cloudDiffOnBothSync": "两边都有 — 云端副本将由本机覆盖",
+  "cloudDiffOnlyOnDeviceRestore": "仅在本机 — 将从本机删除",
+  "cloudDiffOnlyInCloudRestore": "仅在云端 — 将下载到本机",
+  "cloudDiffOnBothRestore": "两边都有 — 本机副本将由云端覆盖",
+  "cloudSyncRunConfirm": "应用同步",
+  "cloudRestoreRunConfirm": "应用恢复",
+  "cloudBackupCancel": "取消",
+  "cloudBackupDone": "云备份已更新。",
+  "cloudRestoreDone": "已从云端恢复。",
+  "cloudNoRecipesInSection": "无",
+  "settingsDiscoverSection": "探索",
+  "drawerDiscoverRecipes": "随机发现食谱",
+  "discoverRecipesTitle": "发现食谱",
+  "discoverRecipesSubtitle": "来自 TheMealDB 的随机餐点",
+  "discoverLoadTenButton": "随机加载 10 道食谱",
+  "discoverFetchProgress": "已完成 {done} / {total} 次请求",
+  "@discoverFetchProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "discoverEmptyHint": "点击上方按钮，从 TheMealDB 随机加载十道餐点（每次请求依次进行）。",
+  "discoverErrorAllFailed": "所有请求均失败。请检查网络后重试。",
+  "discoverErrorNoRecipes": "未返回任何食谱。请重试。",
+  "discoverSomeRequestsFailed": "{count, plural, =1{1 次请求失败}other{{count} 次请求失败}}",
+  "@discoverSomeRequestsFailed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoverPrepOnImport": "保存时再填写准备时间",
+  "discoverServingsOnImport": "保存时再填写份数",
+  "discoverUnknownCategory": "TheMealDB",
+  "discoverBackToList": "返回发现页",
+  "discoverDetailImportCta": "添加到我的食谱",
+  "importRecipeTitle": "添加到我的食谱",
+  "importRecipeSavedMessage": "食谱已加入你的收藏。"
+}

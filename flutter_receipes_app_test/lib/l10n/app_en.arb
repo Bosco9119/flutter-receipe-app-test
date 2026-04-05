@@ -11,7 +11,8 @@
   "themeSystem": "System",
   "language": "Language",
   "english": "English",
-  "indonesian": "Indonesian",
+  "malay": "Malay",
+  "chinese": "Chinese (Simplified)",
   "recipes": "Recipes",
   "login": "Log in",
   "loginUsernameLabel": "Username",
@@ -36,7 +37,12 @@
   "myRecipes": "My Recipes",
   "myRecipesSubtitle": "Discover and manage your favorite recipes",
   "searchRecipesHint": "Search recipes…",
-  "filterRecipes": "Filter by type",
+  "sortRecipesTooltip": "Sort recipes",
+  "sortSheetTitle": "Sort by",
+  "sortTitleAZ": "Title A–Z",
+  "sortTitleZA": "Title Z–A",
+  "sortPrepShortFirst": "Prep time (shortest first)",
+  "sortPrepLongFirst": "Prep time (longest first)",
   "allTypes": "All Types",
   "newRecipe": "New Recipe",
   "recipesFound": "{count, plural, =0{No recipes found}=1{1 recipe found}other{{count} recipes found}}",
@@ -67,6 +73,8 @@
   "backToRecipes": "Back to Recipes",
   "createRecipeTitle": "Create New Recipe",
   "recipeTitleLabel": "Recipe title *",
+  "recipeDescriptionLabel": "Description",
+  "recipeDescriptionHint": "Optional short summary (like bundled recipes.json).",
   "recipeTypeLabel": "Recipe type *",
   "selectRecipeTypeHint": "Select a type",
   "prepTimeLabel": "Prep time *",
@@ -142,5 +150,39 @@
   "cloudBackupCancel": "Cancel",
   "cloudBackupDone": "Cloud backup updated.",
   "cloudRestoreDone": "Restored from cloud.",
-  "cloudNoRecipesInSection": "None"
+  "cloudNoRecipesInSection": "None",
+  "settingsDiscoverSection": "Explore",
+  "drawerDiscoverRecipes": "Discover random recipes",
+  "discoverRecipesTitle": "Discover recipes",
+  "discoverRecipesSubtitle": "Random meals from TheMealDB",
+  "discoverLoadTenButton": "Load 10 random recipes",
+  "discoverFetchProgress": "{done} of {total} requests completed",
+  "@discoverFetchProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "discoverEmptyHint": "Tap the button above to load ten random meals from TheMealDB (one request at a time).",
+  "discoverErrorAllFailed": "Every request failed. Check your connection and try again.",
+  "discoverErrorNoRecipes": "No recipes were returned. Try again.",
+  "discoverSomeRequestsFailed": "{count, plural, =1{1 request failed}other{{count} requests failed}}",
+  "@discoverSomeRequestsFailed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoverPrepOnImport": "Set prep time when you save",
+  "discoverServingsOnImport": "Set servings when you save",
+  "discoverUnknownCategory": "TheMealDB",
+  "discoverBackToList": "Back to discover",
+  "discoverDetailImportCta": "Add to my recipes",
+  "importRecipeTitle": "Add to my recipes",
+  "importRecipeSavedMessage": "Recipe added to your collection."
 }
