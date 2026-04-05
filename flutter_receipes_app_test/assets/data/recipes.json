@@ -1,0 +1,314 @@
+{
+  "recipes": [
+    {
+      "id": "r001",
+      "name": "Classic Pancakes",
+      "type": "breakfast",
+      "description": "Fluffy pancakes perfect for a morning start.",
+      "ingredients": [
+        "1 cup flour",
+        "1 egg",
+        "1 cup milk",
+        "1 tbsp sugar",
+        "1 tsp baking powder"
+      ],
+      "steps": [
+        "Mix dry ingredients in a bowl.",
+        "Add egg and milk, whisk until smooth.",
+        "Heat pan and pour batter.",
+        "Cook both sides until golden."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": true,
+      "isVegan": false,
+      "prep_time_minutes": 15
+    },
+    {
+      "id": "r002",
+      "name": "Chicken Sandwich",
+      "type": "lunch",
+      "description": "Simple grilled chicken sandwich.",
+      "ingredients": [
+        "2 bread slices",
+        "Grilled chicken breast",
+        "Lettuce",
+        "Tomato",
+        "Mayonnaise"
+      ],
+      "steps": [
+        "Toast bread lightly.",
+        "Add chicken, lettuce, and tomato.",
+        "Spread mayonnaise.",
+        "Close sandwich and serve."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": false,
+      "isVegan": false,
+      "prep_time_minutes": 10
+    },
+    {
+      "id": "r003",
+      "name": "Spaghetti Bolognese",
+      "type": "dinner",
+      "description": "Italian pasta with rich meat sauce.",
+      "ingredients": [
+        "Spaghetti",
+        "Ground beef",
+        "Tomato sauce",
+        "Garlic",
+        "Onion"
+      ],
+      "steps": [
+        "Cook spaghetti according to package instructions.",
+        "Saute garlic and onion.",
+        "Add ground beef and cook.",
+        "Pour tomato sauce and simmer.",
+        "Serve sauce over spaghetti."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": false,
+      "isVegan": false,
+      "prep_time_minutes": 30
+    },
+    {
+      "id": "r004",
+      "name": "Chocolate Cake",
+      "type": "dessert",
+      "description": "Moist chocolate cake for sweet lovers.",
+      "ingredients": [
+        "2 cups flour",
+        "1 cup cocoa powder",
+        "2 eggs",
+        "1 cup sugar",
+        "1 cup milk"
+      ],
+      "steps": [
+        "Preheat oven to 180°C.",
+        "Mix dry ingredients.",
+        "Add eggs and milk.",
+        "Bake for 30 minutes."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": true,
+      "isVegan": false,
+      "prep_time_minutes": 45
+    },
+    {
+      "id": "r005",
+      "name": "Spring Rolls",
+      "type": "appetizer",
+      "description": "Crispy vegetable spring rolls.",
+      "ingredients": [
+        "Spring roll wrappers",
+        "Cabbage",
+        "Carrot",
+        "Garlic",
+        "Soy sauce"
+      ],
+      "steps": [
+        "Prepare vegetable filling.",
+        "Wrap vegetables in wrappers.",
+        "Deep fry until golden.",
+        "Serve with dipping sauce."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": true,
+      "isVegan": true,
+      "prep_time_minutes": 25
+    },
+    {
+      "id": "r006",
+      "name": "Mango Smoothie",
+      "type": "beverage",
+      "description": "Refreshing mango smoothie.",
+      "ingredients": [
+        "1 mango",
+        "1 cup yogurt",
+        "1/2 cup milk",
+        "Ice cubes"
+      ],
+      "steps": [
+        "Peel and cut mango.",
+        "Add all ingredients into blender.",
+        "Blend until smooth.",
+        "Serve chilled."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": true,
+      "isVegan": false,
+      "prep_time_minutes": 5
+    },
+    {
+      "id": "r007",
+      "name": "Caesar Salad",
+      "type": "salad",
+      "description": "Classic Caesar salad with crisp lettuce.",
+      "ingredients": [
+        "Romaine lettuce",
+        "Croutons",
+        "Parmesan cheese",
+        "Caesar dressing"
+      ],
+      "steps": [
+        "Wash lettuce.",
+        "Add croutons and cheese.",
+        "Drizzle dressing.",
+        "Toss and serve."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": true,
+      "isVegan": false,
+      "prep_time_minutes": 10
+    },
+    {
+      "id": "r008",
+      "name": "Tomato Soup",
+      "type": "soup",
+      "description": "Warm tomato soup for comfort.",
+      "ingredients": [
+        "Tomatoes",
+        "Garlic",
+        "Onion",
+        "Vegetable broth",
+        "Cream"
+      ],
+      "steps": [
+        "Saute garlic and onion.",
+        "Add tomatoes and broth.",
+        "Simmer for 20 minutes.",
+        "Blend and serve."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": true,
+      "isVegan": false,
+      "prep_time_minutes": 25
+    },
+    {
+      "id": "r009",
+      "name": "Chocolate Chip Cookies",
+      "type": "snack",
+      "description": "Crunchy cookies with chocolate chips.",
+      "ingredients": [
+        "Flour",
+        "Butter",
+        "Sugar",
+        "Egg",
+        "Chocolate chips"
+      ],
+      "steps": [
+        "Mix ingredients.",
+        "Form cookie dough balls.",
+        "Bake at 180°C for 12 minutes."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": true,
+      "isVegan": false,
+      "prep_time_minutes": 20
+    },
+    {
+      "id": "r010",
+      "name": "Grilled Salmon",
+      "type": "seafood",
+      "description": "Simple grilled salmon with herbs.",
+      "ingredients": [
+        "Salmon fillet",
+        "Olive oil",
+        "Salt",
+        "Pepper",
+        "Lemon"
+      ],
+      "steps": [
+        "Season salmon.",
+        "Heat grill pan.",
+        "Cook each side 4–5 minutes.",
+        "Serve with lemon."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": false,
+      "isVegan": false,
+      "prep_time_minutes": 15
+    },
+    {
+      "id": "r011",
+      "name": "Vegetable Stir Fry",
+      "type": "vegetarian",
+      "description": "Quick stir-fried vegetables.",
+      "ingredients": [
+        "Broccoli",
+        "Carrot",
+        "Bell pepper",
+        "Soy sauce",
+        "Garlic"
+      ],
+      "steps": [
+        "Heat oil in pan.",
+        "Add garlic and vegetables.",
+        "Stir fry for 5 minutes.",
+        "Add soy sauce and serve."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": true,
+      "isVegan": true,
+      "prep_time_minutes": 10
+    },
+    {
+      "id": "r012",
+      "name": "Avocado Toast",
+      "type": "healthy",
+      "description": "Healthy avocado toast breakfast.",
+      "ingredients": [
+        "Whole grain bread",
+        "Avocado",
+        "Salt",
+        "Pepper",
+        "Lemon juice"
+      ],
+      "steps": [
+        "Toast bread.",
+        "Mash avocado.",
+        "Spread on toast.",
+        "Season and serve."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": true,
+      "isVegan": true,
+      "prep_time_minutes": 5
+    },
+    {
+      "id": "r013",
+      "name": "Quick Fried Rice",
+      "type": "quick-meals",
+      "description": "Fast fried rice meal in minutes.",
+      "ingredients": [
+        "Cooked rice",
+        "Egg",
+        "Soy sauce",
+        "Carrot",
+        "Green onion"
+      ],
+      "steps": [
+        "Heat oil in pan.",
+        "Add vegetables.",
+        "Add rice and soy sauce.",
+        "Stir fry and serve."
+      ],
+      "image": "assets/data/images/recipes/friedChicken.png",
+      "isHalal": true,
+      "isVegetarian": false,
+      "isVegan": false,
+      "prep_time_minutes": 10
+    }
+  ]
+}

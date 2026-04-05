@@ -1,0 +1,88 @@
+{
+  "recipeTypes": [
+    {
+      "id": "breakfast",
+      "name": "Breakfast",
+      "description": "Start your day with energy-packed meals.",
+      "icon": "🍳"
+    },
+    {
+      "id": "lunch",
+      "name": "Lunch",
+      "description": "Delicious meals perfect for midday.",
+      "icon": "🥪"
+    },
+    {
+      "id": "dinner",
+      "name": "Dinner",
+      "description": "Hearty meals to end the day.",
+      "icon": "🍝"
+    },
+    {
+      "id": "dessert",
+      "name": "Dessert",
+      "description": "Sweet treats and indulgent delights.",
+      "icon": "🍰"
+    },
+    {
+      "id": "appetizer",
+      "name": "Appetizer",
+      "description": "Small plates and starters to open any meal.",
+      "icon": "🍢"
+    },
+    {
+      "id": "beverage",
+      "name": "Beverage",
+      "description": "Drinks, smoothies, juices, and hot sips.",
+      "icon": "🥤"
+    },
+    {
+      "id": "salad",
+      "name": "Salad",
+      "description": "Fresh greens, bowls, and light composed salads.",
+      "icon": "🥗"
+    },
+    {
+      "id": "soup",
+      "name": "Soup",
+      "description": "Broths, chowders, and comforting bowls.",
+      "icon": "🥣"
+    },
+    {
+      "id": "snack",
+      "name": "Snack",
+      "description": "Quick bites for anytime hunger.",
+      "icon": "🍪"
+    },
+    {
+      "id": "vegetarian",
+      "name": "Vegetarian",
+      "description": "Plant-based dishes full of flavor.",
+      "icon": "🥦"
+    },
+    {
+      "id": "vegan",
+      "name": "Vegan",
+      "description": "Completely plant-based recipes.",
+      "icon": "🌱"
+    },
+    {
+      "id": "seafood",
+      "name": "Seafood",
+      "description": "Fresh and tasty seafood dishes.",
+      "icon": "🦐"
+    },
+    {
+      "id": "healthy",
+      "name": "Healthy",
+      "description": "Nutritious recipes for a healthy lifestyle.",
+      "icon": "🥑"
+    },
+    {
+      "id": "quick-meals",
+      "name": "Quick Meals",
+      "description": "Fast recipes ready in under 30 minutes.",
+      "icon": "⚡"
+    }
+  ]
+}

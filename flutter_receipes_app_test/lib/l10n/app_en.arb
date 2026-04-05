@@ -1,0 +1,61 @@
+{
+  "@@locale": "en",
+  "appTitle": "Recipe Book",
+  "@appTitle": {
+    "description": "Application title"
+  },
+  "architecturePreview": "Architecture layer is wired. Recipe flows will plug in here.",
+  "themeSection": "Appearance",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "themeSystem": "System",
+  "language": "Language",
+  "english": "English",
+  "indonesian": "Indonesian",
+  "recipes": "Recipes",
+  "login": "Log in",
+  "logout": "Log out",
+  "settings": "Settings",
+  "home": "Home",
+  "streamDemoTitle": "Live recipe count (reactive stream)",
+  "recipeCount": "{count, plural, =0{No recipes}=1{1 recipe}other{{count} recipes}}",
+  "@recipeCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "myRecipes": "My Recipes",
+  "myRecipesSubtitle": "Discover and manage your favorite recipes",
+  "searchRecipesHint": "Search recipes…",
+  "filterRecipes": "Filter by type",
+  "allTypes": "All Types",
+  "newRecipe": "New Recipe",
+  "recipesFound": "{count, plural, =0{No recipes found}=1{1 recipe found}other{{count} recipes found}}",
+  "@recipesFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "prepTimeMinutes": "{minutes, plural, =1{1 minute}other{{minutes} minutes}}",
+  "@prepTimeMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "servingsCount": "{count, plural, =1{1 serving}other{{count} servings}}",
+  "@servingsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "createRecipeComingSoon": "Create recipe screen will be added here — ingredients, steps, and photo picker hook into your MVVM layer next.",
+  "noRecipesMatch": "No recipes match your search or filter."
+}

@@ -1,0 +1,43 @@
+name: flutter_receipes_app_test
+description: Layered MVVM recipe application with localization, theming, and persistence.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  intl: ^0.20.2
+  provider: ^6.1.5
+  get_it: ^8.0.3
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  http: ^1.4.0
+  crypto: ^3.0.6
+  encrypt: ^5.0.3
+  shared_preferences: ^2.5.3
+  image_picker: ^1.1.2
+  path_provider: ^2.1.5
+  path: ^1.9.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/data/recipetypes.json
+    - assets/data/recipes.json
+    - assets/data/images/recipes/
