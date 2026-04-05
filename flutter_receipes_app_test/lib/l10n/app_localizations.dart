@@ -404,6 +404,12 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// No description provided for @dialogConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get dialogConfirm;
+
   /// No description provided for @createRecipeSubmit.
   ///
   /// In en, this message translates to:
@@ -433,6 +439,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add at least one step.'**
   String get stepsRequired;
+
+  /// No description provided for @recipeNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipe not found'**
+  String get recipeNotFound;
+
+  /// No description provided for @recipeNotFoundMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This recipe may have been deleted or is no longer available.'**
+  String get recipeNotFoundMessage;
+
+  /// No description provided for @editRecipe.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get editRecipe;
+
+  /// No description provided for @deleteRecipe.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteRecipe;
+
+  /// No description provided for @deleteRecipeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete recipe?'**
+  String get deleteRecipeTitle;
+
+  /// No description provided for @deleteRecipeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This cannot be undone. The recipe will be removed from your device.'**
+  String get deleteRecipeMessage;
+
+  /// No description provided for @deleteRecipeConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteRecipeConfirm;
+
+  /// No description provided for @deleteRecipeFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not delete recipe.'**
+  String get deleteRecipeFailed;
+
+  /// No description provided for @ingredientsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Ingredients'**
+  String get ingredientsHeading;
+
+  /// No description provided for @instructionsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Instructions'**
+  String get instructionsHeading;
+
+  /// No description provided for @recipeUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipe updated.'**
+  String get recipeUpdated;
+
+  /// No description provided for @editRecipeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit recipe'**
+  String get editRecipeTitle;
+
+  /// No description provided for @saveRecipeChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get saveRecipeChanges;
 }
 
 class _AppLocalizationsDelegate

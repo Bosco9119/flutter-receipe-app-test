@@ -93,9 +93,23 @@
     }
   },
   "cancel": "Batal",
+  "dialogConfirm": "Konfirmasi",
   "createRecipeSubmit": "Buat resep",
   "createRecipeFailed": "Gagal menyimpan resep.",
   "recipeTypeRequired": "Pilih jenis resep.",
   "ingredientsRequired": "Tambah minimal satu bahan.",
-  "stepsRequired": "Tambah minimal satu langkah."
+  "stepsRequired": "Tambah minimal satu langkah.",
+  "recipeNotFound": "Resep tidak ditemukan",
+  "recipeNotFoundMessage": "Resep ini mungkin sudah dihapus atau tidak tersedia.",
+  "editRecipe": "Ubah",
+  "deleteRecipe": "Hapus",
+  "deleteRecipeTitle": "Hapus resep?",
+  "deleteRecipeMessage": "Tindakan ini tidak dapat dibatalkan. Resep akan dihapus dari perangkat Anda.",
+  "deleteRecipeConfirm": "Hapus",
+  "deleteRecipeFailed": "Gagal menghapus resep.",
+  "ingredientsHeading": "Bahan",
+  "instructionsHeading": "Instruksi",
+  "recipeUpdated": "Resep diperbarui.",
+  "editRecipeTitle": "Ubah resep",
+  "saveRecipeChanges": "Simpan perubahan"
 }

@@ -204,6 +204,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get cancel => 'Batal';
 
   @override
+  String get dialogConfirm => 'Konfirmasi';
+
+  @override
   String get createRecipeSubmit => 'Buat resep';
 
   @override
@@ -217,4 +220,45 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get stepsRequired => 'Tambah minimal satu langkah.';
+
+  @override
+  String get recipeNotFound => 'Resep tidak ditemukan';
+
+  @override
+  String get recipeNotFoundMessage =>
+      'Resep ini mungkin sudah dihapus atau tidak tersedia.';
+
+  @override
+  String get editRecipe => 'Ubah';
+
+  @override
+  String get deleteRecipe => 'Hapus';
+
+  @override
+  String get deleteRecipeTitle => 'Hapus resep?';
+
+  @override
+  String get deleteRecipeMessage =>
+      'Tindakan ini tidak dapat dibatalkan. Resep akan dihapus dari perangkat Anda.';
+
+  @override
+  String get deleteRecipeConfirm => 'Hapus';
+
+  @override
+  String get deleteRecipeFailed => 'Gagal menghapus resep.';
+
+  @override
+  String get ingredientsHeading => 'Bahan';
+
+  @override
+  String get instructionsHeading => 'Instruksi';
+
+  @override
+  String get recipeUpdated => 'Resep diperbarui.';
+
+  @override
+  String get editRecipeTitle => 'Ubah resep';
+
+  @override
+  String get saveRecipeChanges => 'Simpan perubahan';
 }

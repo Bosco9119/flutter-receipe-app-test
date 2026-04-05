@@ -204,6 +204,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancel => 'Cancel';
 
   @override
+  String get dialogConfirm => 'Confirm';
+
+  @override
   String get createRecipeSubmit => 'Create recipe';
 
   @override
@@ -217,4 +220,45 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get stepsRequired => 'Add at least one step.';
+
+  @override
+  String get recipeNotFound => 'Recipe not found';
+
+  @override
+  String get recipeNotFoundMessage =>
+      'This recipe may have been deleted or is no longer available.';
+
+  @override
+  String get editRecipe => 'Edit';
+
+  @override
+  String get deleteRecipe => 'Delete';
+
+  @override
+  String get deleteRecipeTitle => 'Delete recipe?';
+
+  @override
+  String get deleteRecipeMessage =>
+      'This cannot be undone. The recipe will be removed from your device.';
+
+  @override
+  String get deleteRecipeConfirm => 'Delete';
+
+  @override
+  String get deleteRecipeFailed => 'Could not delete recipe.';
+
+  @override
+  String get ingredientsHeading => 'Ingredients';
+
+  @override
+  String get instructionsHeading => 'Instructions';
+
+  @override
+  String get recipeUpdated => 'Recipe updated.';
+
+  @override
+  String get editRecipeTitle => 'Edit recipe';
+
+  @override
+  String get saveRecipeChanges => 'Save changes';
 }

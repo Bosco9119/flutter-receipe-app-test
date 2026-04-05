@@ -5,9 +5,13 @@ import '../../domain/entities/recipe_type_entity.dart';
 import '../../domain/repositories/recipe_repository.dart';
 
 class RecipeCreateViewModel extends ChangeNotifier {
-  RecipeCreateViewModel(this._repository);
+  RecipeCreateViewModel(
+    this._repository, {
+    this.initialTypeId,
+  });
 
   final RecipeRepository _repository;
+  final String? initialTypeId;
 
   List<RecipeTypeEntity> _types = [];
   bool _loadingTypes = true;
@@ -27,7 +31,12 @@ class RecipeCreateViewModel extends ChangeNotifier {
     notifyListeners();
     try {
       _types = await _repository.loadRecipeTypes();
-      _selectedTypeId ??= _types.isNotEmpty ? _types.first.id : null;
+      final preset = initialTypeId;
+      if (preset != null && _types.any((t) => t.id == preset)) {
+        _selectedTypeId = preset;
+      } else {
+        _selectedTypeId ??= _types.isNotEmpty ? _types.first.id : null;
+      }
     } catch (e) {
       _lastError = e.toString();
     } finally {

@@ -9,10 +9,13 @@ import '../../core/utils/prep_time_parse.dart';
 import '../../domain/entities/recipe_entity.dart';
 import '../../l10n/app_localizations.dart';
 import '../view_models/recipe_create_view_model.dart';
-import '../widgets/local_file_image.dart';
+import '../widgets/recipe_image_fill.dart';
 
 class RecipeCreatePage extends StatefulWidget {
-  const RecipeCreatePage({super.key});
+  const RecipeCreatePage({super.key, this.recipeBeingEdited});
+
+  /// When set, the form pre-fills and save updates this recipe (same id).
+  final RecipeEntity? recipeBeingEdited;
 
   @override
   State<RecipeCreatePage> createState() => _RecipeCreatePageState();
@@ -24,6 +27,8 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
   final _prepController = TextEditingController();
   final _servingsController = TextEditingController();
   String? _pickedImagePath;
+  /// When editing, user cleared photo → save uses default image instead of previous path.
+  bool _clearExistingImage = false;
   final List<TextEditingController> _ingredientControllers = [];
   final List<TextEditingController> _stepControllers = [];
 
@@ -32,14 +37,33 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
   @override
   void initState() {
     super.initState();
-    _ingredientControllers.addAll([
-      TextEditingController(),
-      TextEditingController(),
-    ]);
-    _stepControllers.addAll([
-      TextEditingController(),
-      TextEditingController(),
-    ]);
+    final edit = widget.recipeBeingEdited;
+    if (edit != null) {
+      _titleController.text = edit.title;
+      _prepController.text = '${edit.prepMinutes}';
+      _servingsController.text = '${edit.servings}';
+      for (final line in edit.ingredients) {
+        _ingredientControllers.add(TextEditingController(text: line));
+      }
+      if (_ingredientControllers.isEmpty) {
+        _ingredientControllers.add(TextEditingController());
+      }
+      for (final line in edit.steps) {
+        _stepControllers.add(TextEditingController(text: line));
+      }
+      if (_stepControllers.isEmpty) {
+        _stepControllers.add(TextEditingController());
+      }
+    } else {
+      _ingredientControllers.addAll([
+        TextEditingController(),
+        TextEditingController(),
+      ]);
+      _stepControllers.addAll([
+        TextEditingController(),
+        TextEditingController(),
+      ]);
+    }
   }
 
   @override
@@ -101,7 +125,12 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
   }
 
   void _clearPickedPhoto() {
-    setState(() => _pickedImagePath = null);
+    setState(() {
+      _pickedImagePath = null;
+      if (widget.recipeBeingEdited != null) {
+        _clearExistingImage = true;
+      }
+    });
   }
 
   Future<void> _submit() async {
@@ -143,22 +172,34 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
     final servingsParsed = int.tryParse(_servingsController.text.trim());
     final servings = servingsParsed != null && servingsParsed > 0 ? servingsParsed : 2;
 
-    final imagePath =
-        (_pickedImagePath != null && _pickedImagePath!.trim().isNotEmpty)
-            ? _pickedImagePath!.trim()
-            : RecipeAssets.defaultRecipeImage;
+    final base = widget.recipeBeingEdited;
+    final picked = _pickedImagePath?.trim();
+    final String imagePath;
+    if (picked != null && picked.isNotEmpty) {
+      imagePath = picked;
+    } else if (!_clearExistingImage) {
+      final prev = base?.imagePath?.trim();
+      imagePath = (prev != null && prev.isNotEmpty)
+          ? prev
+          : RecipeAssets.defaultRecipeImage;
+    } else {
+      imagePath = RecipeAssets.defaultRecipeImage;
+    }
 
     final recipe = RecipeEntity(
-      id: 'local_${_uuid.v4()}',
+      id: base?.id ?? 'local_${_uuid.v4()}',
       typeId: vm.selectedTypeId!,
       title: _titleController.text.trim(),
-      description: null,
+      description: base?.description,
       ingredients: ingredients,
       steps: steps,
       imagePath: imagePath,
       updatedAt: DateTime.now().toUtc(),
       prepMinutes: prep,
       servings: servings,
+      isHalal: base?.isHalal ?? true,
+      isVegetarian: base?.isVegetarian ?? false,
+      isVegan: base?.isVegan ?? false,
     );
 
     final ok = await vm.saveRecipe(recipe);
@@ -192,6 +233,7 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                   l10n: l10n,
                   scheme: scheme,
                   theme: theme,
+                  isEditing: widget.recipeBeingEdited != null,
                 ),
                 Expanded(
                   child: SingleChildScrollView(
@@ -213,8 +255,13 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                                     scheme: scheme,
                                     theme: theme,
                                     pickedPath: _pickedImagePath,
-                                    onPickGallery: () => _pickImage(ImageSource.gallery),
-                                    onPickCamera: () => _pickImage(ImageSource.camera),
+                                    existingStoragePath: _clearExistingImage
+                                        ? null
+                                        : widget.recipeBeingEdited?.imagePath,
+                                    onPickGallery: () =>
+                                        _pickImage(ImageSource.gallery),
+                                    onPickCamera: () =>
+                                        _pickImage(ImageSource.camera),
                                     onClear: _clearPickedPhoto,
                                   ),
                                   const SizedBox(height: 20),
@@ -417,6 +464,9 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                   l10n: l10n,
                   scheme: scheme,
                   busy: vm.isSubmitting,
+                  submitLabel: widget.recipeBeingEdited != null
+                      ? l10n.saveRecipeChanges
+                      : l10n.createRecipeSubmit,
                   onCancel: () => Navigator.of(context).pop(),
                   onCreate: _submit,
                 ),
@@ -432,6 +482,7 @@ class _RecipePhotoSection extends StatelessWidget {
     required this.scheme,
     required this.theme,
     required this.pickedPath,
+    this.existingStoragePath,
     required this.onPickGallery,
     required this.onPickCamera,
     required this.onClear,
@@ -441,6 +492,7 @@ class _RecipePhotoSection extends StatelessWidget {
   final ColorScheme scheme;
   final ThemeData theme;
   final String? pickedPath;
+  final String? existingStoragePath;
   final VoidCallback onPickGallery;
   final VoidCallback onPickCamera;
   final VoidCallback onClear;
@@ -491,6 +543,12 @@ class _RecipePhotoSection extends StatelessWidget {
                 TextButton(
                   onPressed: onClear,
                   child: Text(l10n.clearPhoto),
+                )
+              else if (existingStoragePath != null &&
+                  existingStoragePath!.trim().isNotEmpty)
+                TextButton(
+                  onPressed: onClear,
+                  child: Text(l10n.clearPhoto),
                 ),
             ],
           ),
@@ -517,12 +575,13 @@ class _RecipePhotoSection extends StatelessWidget {
   }
 
   Widget _buildPreview() {
-    final path = pickedPath?.trim();
-    if (!kIsWeb && path != null && path.isNotEmpty) {
-      final fileWidget = buildLocalFileImage(path, fit: BoxFit.cover);
-      if (fileWidget != null) {
-        return fileWidget;
-      }
+    final picked = pickedPath?.trim();
+    if (picked != null && picked.isNotEmpty) {
+      return RecipeImageFill(imagePath: picked);
+    }
+    final existing = existingStoragePath?.trim();
+    if (existing != null && existing.isNotEmpty) {
+      return RecipeImageFill(imagePath: existing);
     }
     return Center(
       child: Icon(
@@ -539,11 +598,13 @@ class _CreateHeader extends StatelessWidget {
     required this.l10n,
     required this.scheme,
     required this.theme,
+    required this.isEditing,
   });
 
   final AppLocalizations l10n;
   final ColorScheme scheme;
   final ThemeData theme;
+  final bool isEditing;
 
   @override
   Widget build(BuildContext context) {
@@ -567,7 +628,7 @@ class _CreateHeader extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 8),
                 child: Text(
-                  l10n.createRecipeTitle,
+                  isEditing ? l10n.editRecipeTitle : l10n.createRecipeTitle,
                   style: theme.textTheme.headlineSmall?.copyWith(
                     color: scheme.onPrimary,
                     fontWeight: FontWeight.bold,
@@ -632,6 +693,7 @@ class _CreateFooter extends StatelessWidget {
     required this.l10n,
     required this.scheme,
     required this.busy,
+    required this.submitLabel,
     required this.onCancel,
     required this.onCreate,
   });
@@ -639,6 +701,7 @@ class _CreateFooter extends StatelessWidget {
   final AppLocalizations l10n;
   final ColorScheme scheme;
   final bool busy;
+  final String submitLabel;
   final VoidCallback onCancel;
   final VoidCallback onCreate;
 
@@ -669,7 +732,7 @@ class _CreateFooter extends StatelessWidget {
                           width: 22,
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
-                      : Text(l10n.createRecipeSubmit),
+                      : Text(submitLabel),
                 ),
               ),
             ],

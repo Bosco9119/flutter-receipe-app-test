@@ -96,9 +96,23 @@
     }
   },
   "cancel": "Cancel",
+  "dialogConfirm": "Confirm",
   "createRecipeSubmit": "Create recipe",
   "createRecipeFailed": "Could not save recipe.",
   "recipeTypeRequired": "Choose a recipe type.",
   "ingredientsRequired": "Add at least one ingredient.",
-  "stepsRequired": "Add at least one step."
+  "stepsRequired": "Add at least one step.",
+  "recipeNotFound": "Recipe not found",
+  "recipeNotFoundMessage": "This recipe may have been deleted or is no longer available.",
+  "editRecipe": "Edit",
+  "deleteRecipe": "Delete",
+  "deleteRecipeTitle": "Delete recipe?",
+  "deleteRecipeMessage": "This cannot be undone. The recipe will be removed from your device.",
+  "deleteRecipeConfirm": "Delete",
+  "deleteRecipeFailed": "Could not delete recipe.",
+  "ingredientsHeading": "Ingredients",
+  "instructionsHeading": "Instructions",
+  "recipeUpdated": "Recipe updated.",
+  "editRecipeTitle": "Edit recipe",
+  "saveRecipeChanges": "Save changes"
 }

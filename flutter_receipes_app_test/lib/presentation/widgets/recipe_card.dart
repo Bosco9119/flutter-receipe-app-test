@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/recipe_entity.dart';
-import 'local_file_image.dart';
+import 'recipe_image_fill.dart';
 
 class RecipeCard extends StatelessWidget {
   const RecipeCard({
@@ -10,12 +10,14 @@ class RecipeCard extends StatelessWidget {
     required this.typeLabel,
     required this.prepLabel,
     required this.servingsLabel,
+    this.onTap,
   });
 
   final RecipeEntity recipe;
   final String typeLabel;
   final String prepLabel;
   final String servingsLabel;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +29,7 @@ class RecipeCard extends StatelessWidget {
       elevation: 2,
       shadowColor: scheme.shadow.withValues(alpha: 0.12),
       child: InkWell(
-        onTap: () {
-          // Detail route hooks in later.
-        },
+        onTap: onTap,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -38,7 +38,7 @@ class RecipeCard extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  _RecipeImage(imagePath: recipe.imagePath),
+                  RecipeImageFill(imagePath: recipe.imagePath),
                   Positioned(
                     top: 10,
                     right: 10,
@@ -166,57 +166,6 @@ class RecipeCard extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _RecipeImage extends StatelessWidget {
-  const _RecipeImage({this.imagePath});
-
-  final String? imagePath;
-
-  @override
-  Widget build(BuildContext context) {
-    final path = imagePath;
-    if (path == null || path.isEmpty) {
-      return ColoredBox(
-        color: Theme.of(context).colorScheme.surfaceContainerHigh,
-        child: const Center(child: Icon(Icons.restaurant, size: 48)),
-      );
-    }
-    if (path.startsWith('http')) {
-      return Image.network(
-        path,
-        fit: BoxFit.cover,
-        loadingBuilder: (context, child, progress) {
-          if (progress == null) {
-            return child;
-          }
-          return const Center(child: CircularProgressIndicator(strokeWidth: 2));
-        },
-        errorBuilder: (context, error, stackTrace) => ColoredBox(
-          color: Theme.of(context).colorScheme.surfaceContainerHigh,
-          child: const Icon(Icons.broken_image_outlined, size: 40),
-        ),
-      );
-    }
-    if (path.startsWith('assets/')) {
-      return Image.asset(
-        path,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) => ColoredBox(
-          color: Theme.of(context).colorScheme.surfaceContainerHigh,
-          child: const Icon(Icons.broken_image_outlined, size: 40),
-        ),
-      );
-    }
-    final fileImage = buildLocalFileImage(path, fit: BoxFit.cover);
-    if (fileImage != null) {
-      return fileImage;
-    }
-    return ColoredBox(
-      color: Theme.of(context).colorScheme.surfaceContainerHigh,
-      child: const Icon(Icons.image_not_supported_outlined),
     );
   }
 }

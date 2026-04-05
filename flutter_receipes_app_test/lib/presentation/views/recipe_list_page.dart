@@ -4,10 +4,12 @@ import 'package:provider/provider.dart';
 import '../../core/di/injection.dart';
 import '../../l10n/app_localizations.dart';
 import '../view_models/recipe_create_view_model.dart';
+import '../view_models/recipe_detail_view_model.dart';
 import '../view_models/recipe_list_view_model.dart';
 import '../widgets/app_settings_drawer.dart';
 import '../widgets/recipe_card.dart';
 import 'recipe_create_page.dart';
+import 'recipe_detail_page.dart';
 
 class RecipeListPage extends StatelessWidget {
   const RecipeListPage({super.key});
@@ -192,6 +194,17 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
                   typeLabel: vm.typeDisplayName(recipe.typeId),
                   prepLabel: l10n.prepTimeMinutes(recipe.prepMinutes),
                   servingsLabel: l10n.servingsCount(recipe.servings),
+                  onTap: () {
+                    Navigator.of(context).push<void>(
+                      MaterialPageRoute<void>(
+                        builder: (_) => ChangeNotifierProvider(
+                          create: (_) =>
+                              RecipeDetailViewModel(sl(), recipe.id)..start(),
+                          child: const RecipeDetailPage(),
+                        ),
+                      ),
+                    );
+                  },
                 );
               }, childCount: visible.length),
             ),
