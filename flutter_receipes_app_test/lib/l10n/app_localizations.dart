@@ -103,7 +103,7 @@ abstract class AppLocalizations {
   /// Application title
   ///
   /// In en, this message translates to:
-  /// **'Recipe Book'**
+  /// **'MyFoodJourney'**
   String get appTitle;
 
   /// No description provided for @architecturePreview.

@@ -9,7 +9,7 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => '食谱本';
+  String get appTitle => 'MyFoodJourney';
 
   @override
   String get architecturePreview => '架构层已连接，食谱流程将在此处接入。';

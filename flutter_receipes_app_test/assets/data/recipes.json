@@ -18,7 +18,7 @@
         "Heat pan and pour batter.",
         "Cook both sides until golden."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/pancake.png",
       "isHalal": true,
       "isVegetarian": true,
       "isVegan": false,
@@ -42,7 +42,7 @@
         "Spread mayonnaise.",
         "Close sandwich and serve."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/chickenSandwich.png",
       "isHalal": true,
       "isVegetarian": false,
       "isVegan": false,
@@ -67,7 +67,7 @@
         "Pour tomato sauce and simmer.",
         "Serve sauce over spaghetti."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/spaghettiBolognese.png",
       "isHalal": true,
       "isVegetarian": false,
       "isVegan": false,
@@ -91,7 +91,7 @@
         "Add eggs and milk.",
         "Bake for 30 minutes."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/chocolateCake.png",
       "isHalal": true,
       "isVegetarian": true,
       "isVegan": false,
@@ -115,7 +115,7 @@
         "Deep fry until golden.",
         "Serve with dipping sauce."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/springRolls.png",
       "isHalal": true,
       "isVegetarian": true,
       "isVegan": true,
@@ -138,7 +138,7 @@
         "Blend until smooth.",
         "Serve chilled."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/mangoSmoothie.png",
       "isHalal": true,
       "isVegetarian": true,
       "isVegan": false,
@@ -161,7 +161,7 @@
         "Drizzle dressing.",
         "Toss and serve."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/caesarSalad.png",
       "isHalal": true,
       "isVegetarian": true,
       "isVegan": false,
@@ -185,7 +185,7 @@
         "Simmer for 20 minutes.",
         "Blend and serve."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/tomatoSoup.png",
       "isHalal": true,
       "isVegetarian": true,
       "isVegan": false,
@@ -208,7 +208,7 @@
         "Form cookie dough balls.",
         "Bake at 180°C for 12 minutes."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/chocolateChipCookies.png",
       "isHalal": true,
       "isVegetarian": true,
       "isVegan": false,
@@ -232,7 +232,7 @@
         "Cook each side 4–5 minutes.",
         "Serve with lemon."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/grilledSalmon.png",
       "isHalal": true,
       "isVegetarian": false,
       "isVegan": false,
@@ -256,7 +256,7 @@
         "Stir fry for 5 minutes.",
         "Add soy sauce and serve."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/vegetableStirFried.png",
       "isHalal": true,
       "isVegetarian": true,
       "isVegan": true,
@@ -280,7 +280,7 @@
         "Spread on toast.",
         "Season and serve."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/avocadoToast.png",
       "isHalal": true,
       "isVegetarian": true,
       "isVegan": true,
@@ -304,7 +304,7 @@
         "Add rice and soy sauce.",
         "Stir fry and serve."
       ],
-      "image": "assets/data/images/recipes/friedChicken.png",
+      "image": "assets/data/images/recipes/friedRice.png",
       "isHalal": true,
       "isVegetarian": false,
       "isVegan": false,

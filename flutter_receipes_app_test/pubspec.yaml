@@ -37,6 +37,20 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
   mocktail: ^1.0.4
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  # Adaptive layers: launchers apply rounded/circular/squircle masks (API 26+).
+  adaptive_icon_background: "#FFF8F0"
+  adaptive_icon_foreground: assets/data/images/AppIcons/Assets.xcassets/AppIcon.appiconset/_/1024.png
+  web:
+    generate: true
+  windows:
+    generate: true
+  image_path: assets/data/images/AppIcons/Assets.xcassets/AppIcon.appiconset/_/1024.png
 
 flutter:
   uses-material-design: true

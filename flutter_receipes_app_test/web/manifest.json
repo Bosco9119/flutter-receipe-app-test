@@ -1,11 +1,11 @@
 {
-    "name": "flutter_receipes_app_test",
-    "short_name": "flutter_receipes_app_test",
+    "name": "MyFoodJourney",
+    "short_name": "MyFoodJourney",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Discover and manage your recipes.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

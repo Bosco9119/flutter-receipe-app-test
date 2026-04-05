@@ -9,7 +9,7 @@ class AppLocalizationsMs extends AppLocalizations {
   AppLocalizationsMs([String locale = 'ms']) : super(locale);
 
   @override
-  String get appTitle => 'Buku Resipi';
+  String get appTitle => 'MyFoodJourney';
 
   @override
   String get architecturePreview =>
