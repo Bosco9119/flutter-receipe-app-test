@@ -5,6 +5,8 @@ import '../entities/recipe_type_entity.dart';
 abstract class RecipeRepository {
   Stream<List<RecipeEntity>> watchRecipes();
 
+  Future<List<RecipeEntity>> loadRecipes();
+
   Future<List<RecipeTypeEntity>> loadRecipeTypes();
 
   Future<void> upsertRecipe(RecipeEntity recipe);

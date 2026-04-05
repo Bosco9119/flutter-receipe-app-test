@@ -68,6 +68,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings => 'Settings';
 
   @override
+  String get settingsDrawerLocalOnly =>
+      'Local sign-in (no Gmail on this account)';
+
+  @override
   String get home => 'Home';
 
   @override
@@ -280,4 +284,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get saveRecipeChanges => 'Save changes';
+
+  @override
+  String get settingsCloudBackupSection => 'Cloud backup';
+
+  @override
+  String get settingsSyncToCloud => 'Sync to cloud';
+
+  @override
+  String get settingsRestoreFromCloud => 'Restore from cloud';
+
+  @override
+  String get cloudSyncRequiresGoogle =>
+      'Sign in with Google to use cloud backup.';
+
+  @override
+  String get cloudSyncDialogTitle => 'Sync to cloud';
+
+  @override
+  String get cloudSyncDialogSubtitle =>
+      'Cloud will match your device: uploads, updates, and removes extra cloud recipes.';
+
+  @override
+  String get cloudRestoreDialogTitle => 'Restore from cloud';
+
+  @override
+  String get cloudRestoreDialogSubtitle =>
+      'Device will match the cloud: downloads, updates, and removes extra local recipes.';
+
+  @override
+  String get cloudDiffLoading => 'Comparing device and cloud…';
+
+  @override
+  String get cloudDiffOnlyOnDeviceSync =>
+      'Only on device — will upload to cloud';
+
+  @override
+  String get cloudDiffOnlyInCloudSync =>
+      'Only in cloud — will be removed from cloud';
+
+  @override
+  String get cloudDiffOnBothSync =>
+      'On both — cloud copy will be replaced from device';
+
+  @override
+  String get cloudDiffOnlyOnDeviceRestore =>
+      'Only on device — will be removed from device';
+
+  @override
+  String get cloudDiffOnlyInCloudRestore =>
+      'Only in cloud — will be downloaded to device';
+
+  @override
+  String get cloudDiffOnBothRestore =>
+      'On both — device copy will be replaced from cloud';
+
+  @override
+  String get cloudSyncRunConfirm => 'Apply sync';
+
+  @override
+  String get cloudRestoreRunConfirm => 'Apply restore';
+
+  @override
+  String get cloudBackupCancel => 'Cancel';
+
+  @override
+  String get cloudBackupDone => 'Cloud backup updated.';
+
+  @override
+  String get cloudRestoreDone => 'Restored from cloud.';
+
+  @override
+  String get cloudNoRecipesInSection => 'None';
 }

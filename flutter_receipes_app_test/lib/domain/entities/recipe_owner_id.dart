@@ -16,3 +16,13 @@ String recipeOwnerStorageId(AuthSessionEntity session) {
   }
   return 'local_$u';
 }
+
+/// Firestore paths use the Firebase Auth UID; demo/local accounts cannot use cloud backup with default security rules.
+bool sessionEligibleForCloudSync(AuthSessionEntity session) {
+  if (session.provider != AuthProviderKind.google) {
+    return false;
+  }
+  final uid = session.remoteUserId?.trim();
+  return uid != null && uid.isNotEmpty;
+}
+

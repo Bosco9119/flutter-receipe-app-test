@@ -1,10 +1,16 @@
 import '../entities/auth_session_entity.dart';
+import '../entities/recipe_cloud_diff.dart';
 
-/// Future Firestore layer: mirror recipes under
-/// `users/{recipeOwnerStorageId(session)}/...` (see [recipe_owner_id.dart]; same id as local Hive for Google UIDs).
-///
-/// Not implemented yet; register a concrete class when enabling cloud sync.
+/// Firestore backup under `users/{ownerId}/recipes/{recipeId}`.
+/// Only for Google sign-in ([sessionEligibleForCloudSync]); rules should enforce `request.auth.uid == ownerId`.
 abstract class RecipeCloudSyncRepository {
-  /// Intended to upload or merge local recipe changes for the signed-in user.
-  Future<void> syncLocalRecipesForUser(AuthSessionEntity session);
+  bool canUseCloud(AuthSessionEntity session);
+
+  Future<RecipeCloudDiff> compare(AuthSessionEntity session);
+
+  /// Local wins: delete cloud-only docs, upsert every local recipe to cloud.
+  Future<void> syncToCloud(AuthSessionEntity session);
+
+  /// Cloud wins: delete local-only recipes, upsert every cloud recipe locally.
+  Future<void> restoreFromCloud(AuthSessionEntity session);
 }

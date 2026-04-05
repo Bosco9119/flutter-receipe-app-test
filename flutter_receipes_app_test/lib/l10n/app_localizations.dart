@@ -212,6 +212,12 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settings;
 
+  /// No description provided for @settingsDrawerLocalOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Local sign-in (no Gmail on this account)'**
+  String get settingsDrawerLocalOnly;
+
   /// No description provided for @home.
   ///
   /// In en, this message translates to:
@@ -553,6 +559,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save changes'**
   String get saveRecipeChanges;
+
+  /// No description provided for @settingsCloudBackupSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloud backup'**
+  String get settingsCloudBackupSection;
+
+  /// No description provided for @settingsSyncToCloud.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync to cloud'**
+  String get settingsSyncToCloud;
+
+  /// No description provided for @settingsRestoreFromCloud.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore from cloud'**
+  String get settingsRestoreFromCloud;
+
+  /// No description provided for @cloudSyncRequiresGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google to use cloud backup.'**
+  String get cloudSyncRequiresGoogle;
+
+  /// No description provided for @cloudSyncDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync to cloud'**
+  String get cloudSyncDialogTitle;
+
+  /// No description provided for @cloudSyncDialogSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloud will match your device: uploads, updates, and removes extra cloud recipes.'**
+  String get cloudSyncDialogSubtitle;
+
+  /// No description provided for @cloudRestoreDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore from cloud'**
+  String get cloudRestoreDialogTitle;
+
+  /// No description provided for @cloudRestoreDialogSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Device will match the cloud: downloads, updates, and removes extra local recipes.'**
+  String get cloudRestoreDialogSubtitle;
+
+  /// No description provided for @cloudDiffLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Comparing device and cloud…'**
+  String get cloudDiffLoading;
+
+  /// No description provided for @cloudDiffOnlyOnDeviceSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Only on device — will upload to cloud'**
+  String get cloudDiffOnlyOnDeviceSync;
+
+  /// No description provided for @cloudDiffOnlyInCloudSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Only in cloud — will be removed from cloud'**
+  String get cloudDiffOnlyInCloudSync;
+
+  /// No description provided for @cloudDiffOnBothSync.
+  ///
+  /// In en, this message translates to:
+  /// **'On both — cloud copy will be replaced from device'**
+  String get cloudDiffOnBothSync;
+
+  /// No description provided for @cloudDiffOnlyOnDeviceRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Only on device — will be removed from device'**
+  String get cloudDiffOnlyOnDeviceRestore;
+
+  /// No description provided for @cloudDiffOnlyInCloudRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Only in cloud — will be downloaded to device'**
+  String get cloudDiffOnlyInCloudRestore;
+
+  /// No description provided for @cloudDiffOnBothRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'On both — device copy will be replaced from cloud'**
+  String get cloudDiffOnBothRestore;
+
+  /// No description provided for @cloudSyncRunConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply sync'**
+  String get cloudSyncRunConfirm;
+
+  /// No description provided for @cloudRestoreRunConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply restore'**
+  String get cloudRestoreRunConfirm;
+
+  /// No description provided for @cloudBackupCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cloudBackupCancel;
+
+  /// No description provided for @cloudBackupDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloud backup updated.'**
+  String get cloudBackupDone;
+
+  /// No description provided for @cloudRestoreDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Restored from cloud.'**
+  String get cloudRestoreDone;
+
+  /// No description provided for @cloudNoRecipesInSection.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get cloudNoRecipesInSection;
 }
 
 class _AppLocalizationsDelegate

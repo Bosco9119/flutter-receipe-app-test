@@ -29,6 +29,12 @@ class RecipeRepositoryImpl implements RecipeRepository {
   }
 
   @override
+  Future<List<RecipeEntity>> loadRecipes() async {
+    final models = await _local.readRecipes();
+    return models.map((m) => m.toEntity()).toList();
+  }
+
+  @override
   Future<List<RecipeTypeEntity>> loadRecipeTypes() async {
     try {
       final remote = await _remoteTypes.fetchRecipeTypes();

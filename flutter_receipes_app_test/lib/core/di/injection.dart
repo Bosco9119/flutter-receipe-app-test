@@ -6,10 +6,14 @@ import '../../data/datasources/local/recipe_local_data_source.dart';
 import '../../data/datasources/local/recipe_type_asset_data_source.dart';
 import '../../data/datasources/remote/firebase_identity_data_source.dart';
 import '../../data/datasources/remote/firebase_identity_data_source_impl.dart';
+import '../../data/datasources/remote/recipe_firestore_data_source.dart';
+import '../../data/datasources/remote/recipe_firestore_data_source_impl.dart';
 import '../../data/datasources/remote/recipe_remote_data_source.dart';
 import '../../data/repositories/auth_repository_impl.dart';
+import '../../data/repositories/recipe_cloud_sync_repository_impl.dart';
 import '../../data/repositories/recipe_repository_impl.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../../domain/repositories/recipe_cloud_sync_repository.dart';
 import '../../domain/repositories/recipe_repository.dart';
 import '../security/crypto_service.dart';
 
@@ -56,6 +60,15 @@ Future<void> configureDependencies({Uri? remoteRecipeTypesUrl}) async {
       local: sl(),
       typeAsset: sl(),
       remoteTypes: sl(),
+    ),
+  );
+  sl.registerLazySingleton<RecipeFirestoreDataSource>(
+    RecipeFirestoreDataSourceImpl.new,
+  );
+  sl.registerLazySingleton<RecipeCloudSyncRepository>(
+    () => RecipeCloudSyncRepositoryImpl(
+      firestore: sl(),
+      recipeRepository: sl(),
     ),
   );
 }

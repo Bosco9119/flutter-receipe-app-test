@@ -68,6 +68,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get settings => 'Pengaturan';
 
   @override
+  String get settingsDrawerLocalOnly =>
+      'Masuk lokal (tanpa Gmail pada akun ini)';
+
+  @override
   String get home => 'Beranda';
 
   @override
@@ -280,4 +284,76 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get saveRecipeChanges => 'Simpan perubahan';
+
+  @override
+  String get settingsCloudBackupSection => 'Cadangan cloud';
+
+  @override
+  String get settingsSyncToCloud => 'Sinkron ke cloud';
+
+  @override
+  String get settingsRestoreFromCloud => 'Pulihkan dari cloud';
+
+  @override
+  String get cloudSyncRequiresGoogle =>
+      'Masuk dengan Google untuk cadangan cloud.';
+
+  @override
+  String get cloudSyncDialogTitle => 'Sinkron ke cloud';
+
+  @override
+  String get cloudSyncDialogSubtitle =>
+      'Cloud akan mengikuti perangkat: unggah, perbarui, dan hapus resep cloud yang tidak ada di perangkat.';
+
+  @override
+  String get cloudRestoreDialogTitle => 'Pulihkan dari cloud';
+
+  @override
+  String get cloudRestoreDialogSubtitle =>
+      'Perangkat akan mengikuti cloud: unduh, perbarui, dan hapus resep lokal yang tidak ada di cloud.';
+
+  @override
+  String get cloudDiffLoading => 'Membandingkan perangkat dan cloud…';
+
+  @override
+  String get cloudDiffOnlyOnDeviceSync =>
+      'Hanya di perangkat — akan diunggah ke cloud';
+
+  @override
+  String get cloudDiffOnlyInCloudSync =>
+      'Hanya di cloud — akan dihapus dari cloud';
+
+  @override
+  String get cloudDiffOnBothSync =>
+      'Keduanya — salinan cloud diganti dari perangkat';
+
+  @override
+  String get cloudDiffOnlyOnDeviceRestore =>
+      'Hanya di perangkat — akan dihapus dari perangkat';
+
+  @override
+  String get cloudDiffOnlyInCloudRestore =>
+      'Hanya di cloud — akan diunduh ke perangkat';
+
+  @override
+  String get cloudDiffOnBothRestore =>
+      'Keduanya — salinan perangkat diganti dari cloud';
+
+  @override
+  String get cloudSyncRunConfirm => 'Terapkan sinkron';
+
+  @override
+  String get cloudRestoreRunConfirm => 'Terapkan pemulihan';
+
+  @override
+  String get cloudBackupCancel => 'Batal';
+
+  @override
+  String get cloudBackupDone => 'Cadangan cloud diperbarui.';
+
+  @override
+  String get cloudRestoreDone => 'Pemulihan dari cloud selesai.';
+
+  @override
+  String get cloudNoRecipesInSection => 'Tidak ada';
 }
