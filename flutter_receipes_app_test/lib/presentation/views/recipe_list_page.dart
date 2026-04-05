@@ -68,11 +68,7 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
-          child: _ListHeader(
-            l10n: l10n,
-            scheme: scheme,
-            theme: theme,
-          ),
+          child: _ListHeader(l10n: l10n, scheme: scheme, theme: theme),
         ),
         SliverToBoxAdapter(
           child: Padding(
@@ -108,10 +104,7 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
                       const SizedBox(width: 8),
                       filterButton,
                       const SizedBox(width: 8),
-                      SizedBox(
-                        width: 200,
-                        child: dropdown,
-                      ),
+                      SizedBox(width: 200, child: dropdown),
                     ],
                   );
                 }
@@ -152,7 +145,8 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
                     Navigator.of(context).push<bool>(
                       MaterialPageRoute<bool>(
                         builder: (_) => ChangeNotifierProvider(
-                          create: (_) => RecipeCreateViewModel(sl())..loadTypes(),
+                          create: (_) =>
+                              RecipeCreateViewModel(sl())..loadTypes(),
                           child: const RecipeCreatePage(),
                         ),
                       ),
@@ -186,38 +180,48 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
             sliver: SliverGrid(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: _gridColumns(context),
+                crossAxisCount: _gridColumnCount(context),
                 mainAxisSpacing: 16,
                 crossAxisSpacing: 16,
-                childAspectRatio: 0.74,
+                childAspectRatio: _gridChildAspectRatio(context),
               ),
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  final recipe = visible[index];
-                  return RecipeCard(
-                    recipe: recipe,
-                    typeLabel: vm.typeDisplayName(recipe.typeId),
-                    prepLabel: l10n.prepTimeMinutes(recipe.prepMinutes),
-                    servingsLabel: l10n.servingsCount(recipe.servings),
-                  );
-                },
-                childCount: visible.length,
-              ),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final recipe = visible[index];
+                return RecipeCard(
+                  recipe: recipe,
+                  typeLabel: vm.typeDisplayName(recipe.typeId),
+                  prepLabel: l10n.prepTimeMinutes(recipe.prepMinutes),
+                  servingsLabel: l10n.servingsCount(recipe.servings),
+                );
+              }, childCount: visible.length),
             ),
           ),
       ],
     );
   }
 
-  int _gridColumns(BuildContext context) {
+  /// Responsive columns: 3 wide desktop, 2 from ~phone portrait up, 1 only on very narrow widths.
+  int _gridColumnCount(BuildContext context) {
     final w = MediaQuery.sizeOf(context).width;
-    if (w >= 1100) {
+    if (w >= 1000) {
       return 3;
     }
-    if (w >= 700) {
+    if (w >= 360) {
       return 2;
     }
     return 1;
+  }
+
+  /// Taller tiles for multi-column grids so text + meta stay within bounds on narrow cells.
+  double _gridChildAspectRatio(BuildContext context) {
+    switch (_gridColumnCount(context)) {
+      case 3:
+        return 0.64;
+      case 2:
+        return 0.50;
+      default:
+        return 0.72;
+    }
   }
 
   void _openFilterSheet(
@@ -235,7 +239,10 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
               ListTile(
                 title: Text(l10n.allTypes),
                 trailing: vm.selectedTypeId == null
-                    ? Icon(Icons.check, color: Theme.of(ctx).colorScheme.primary)
+                    ? Icon(
+                        Icons.check,
+                        color: Theme.of(ctx).colorScheme.primary,
+                      )
                     : null,
                 onTap: () {
                   vm.setSelectedTypeId(null);
@@ -245,9 +252,7 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
               const Divider(height: 1),
               ...vm.recipeTypes.map(
                 (t) => ListTile(
-                  title: Text(
-                    t.icon != null ? '${t.icon} ${t.name}' : t.name,
-                  ),
+                  title: Text(t.icon != null ? '${t.icon} ${t.name}' : t.name),
                   trailing: vm.selectedTypeId == t.id
                       ? Icon(
                           Icons.check,
@@ -365,10 +370,7 @@ class _TypeDropdown extends StatelessWidget {
           hint: Text(l10n.allTypes),
           borderRadius: BorderRadius.circular(12),
           items: [
-            DropdownMenuItem<String?>(
-              value: null,
-              child: Text(l10n.allTypes),
-            ),
+            DropdownMenuItem<String?>(value: null, child: Text(l10n.allTypes)),
             ...vm.recipeTypes.map(
               (t) => DropdownMenuItem<String?>(
                 value: t.id,
