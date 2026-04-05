@@ -55,6 +55,9 @@ class DiscoverMealDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   IconButton(
+                    style: IconButton.styleFrom(
+                      padding: const EdgeInsets.fromLTRB(2, 8, 10, 8),
+                    ),
                     icon: const Icon(Icons.arrow_back, color: Colors.white),
                     tooltip: l10n.discoverBackToList,
                     onPressed: () => Navigator.of(context).pop(),

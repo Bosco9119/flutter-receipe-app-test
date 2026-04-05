@@ -66,7 +66,7 @@ class RecipeDetailPage extends StatelessWidget {
             ),
             child: Padding(
               padding: EdgeInsets.fromLTRB(
-                16,
+                10,
                 MediaQuery.paddingOf(context).top + 12,
                 16,
                 16,
@@ -75,6 +75,9 @@ class RecipeDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   IconButton(
+                    style: IconButton.styleFrom(
+                      padding: const EdgeInsets.fromLTRB(2, 8, 10, 8),
+                    ),
                     icon: const Icon(Icons.arrow_back, color: Colors.white),
                     tooltip: l10n.backToRecipes,
                     onPressed: () => Navigator.of(context).pop(),
@@ -96,9 +99,7 @@ class RecipeDetailPage extends StatelessWidget {
                   ),
                   IconButton.filledTonal(
                     style: IconButton.styleFrom(
-                      backgroundColor: scheme.onPrimary.withValues(
-                        alpha: 0.22,
-                      ),
+                      backgroundColor: scheme.onPrimary.withValues(alpha: 0.22),
                       foregroundColor: scheme.onPrimary,
                     ),
                     onPressed: () => _openEdit(context, recipe),
@@ -108,9 +109,7 @@ class RecipeDetailPage extends StatelessWidget {
                   const SizedBox(width: 4),
                   IconButton.filledTonal(
                     style: IconButton.styleFrom(
-                      backgroundColor: scheme.onPrimary.withValues(
-                        alpha: 0.22,
-                      ),
+                      backgroundColor: scheme.onPrimary.withValues(alpha: 0.22),
                       foregroundColor: scheme.onPrimary,
                     ),
                     onPressed: () => _confirmDelete(context),

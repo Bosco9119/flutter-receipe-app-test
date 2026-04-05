@@ -325,7 +325,7 @@ class _ListHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(
-        16,
+        10,
         MediaQuery.paddingOf(context).top + 12,
         16,
         16,
@@ -339,6 +339,9 @@ class _ListHeader extends StatelessWidget {
           Builder(
             builder: (ctx) {
               return IconButton(
+                style: IconButton.styleFrom(
+                  padding: const EdgeInsets.fromLTRB(2, 8, 10, 8),
+                ),
                 icon: const Icon(Icons.menu, color: Colors.white),
                 onPressed: () => Scaffold.of(ctx).openDrawer(),
                 tooltip: MaterialLocalizations.of(ctx).openAppDrawerTooltip,

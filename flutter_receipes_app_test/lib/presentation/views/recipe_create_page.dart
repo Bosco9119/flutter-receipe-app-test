@@ -37,6 +37,7 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
   final _prepController = TextEditingController();
   final _servingsController = TextEditingController();
   String? _pickedImagePath;
+
   /// When editing, user cleared photo → save uses default image instead of previous path.
   bool _clearExistingImage = false;
 
@@ -180,9 +181,9 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
     }
     final vm = context.read<RecipeCreateViewModel>();
     if (vm.selectedTypeId == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.recipeTypeRequired)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.recipeTypeRequired)));
       return;
     }
 
@@ -196,21 +197,23 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
         .toList();
 
     if (ingredients.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.ingredientsRequired)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.ingredientsRequired)));
       return;
     }
     if (steps.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.stepsRequired)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.stepsRequired)));
       return;
     }
 
     final prep = parsePrepMinutesFromText(_prepController.text) ?? 15;
     final servingsParsed = int.tryParse(_servingsController.text.trim());
-    final servings = servingsParsed != null && servingsParsed > 0 ? servingsParsed : 2;
+    final servings = servingsParsed != null && servingsParsed > 0
+        ? servingsParsed
+        : 2;
 
     final base = widget.recipeBeingEdited;
     final picked = _pickedImagePath?.trim();
@@ -233,7 +236,8 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
 
     final descText = _descriptionController.text.trim();
     final recipe = RecipeEntity(
-      id: base?.id ??
+      id:
+          base?.id ??
           widget.theMealDbPrefill?.proposedRecipeId ??
           'local_${_uuid.v4()}',
       typeId: vm.selectedTypeId!,
@@ -361,7 +365,8 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                                                   t.icon != null
                                                       ? '${t.icon} ${t.name}'
                                                       : t.name,
-                                                  overflow: TextOverflow.ellipsis,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                 ),
                                               ),
                                             )
@@ -387,7 +392,8 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                                           if (v == null || v.trim().isEmpty) {
                                             return l10n.fieldRequired;
                                           }
-                                          if (parsePrepMinutesFromText(v) == null) {
+                                          if (parsePrepMinutesFromText(v) ==
+                                              null) {
                                             return l10n.prepTimeInvalid;
                                           }
                                           return null;
@@ -414,7 +420,8 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                                       );
                                       if (row) {
                                         return Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Expanded(child: prepField),
                                             const SizedBox(width: 16),
@@ -438,31 +445,41 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                                     onAdd: _addIngredient,
                                   ),
                                   const SizedBox(height: 8),
-                                  ...List.generate(_ingredientControllers.length, (i) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(bottom: 8),
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            child: TextFormField(
-                                              controller: _ingredientControllers[i],
-                                              decoration: InputDecoration(
-                                                hintText: l10n.ingredientHint(i + 1),
+                                  ...List.generate(
+                                    _ingredientControllers.length,
+                                    (i) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 8,
+                                        ),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              child: TextFormField(
+                                                controller:
+                                                    _ingredientControllers[i],
+                                                decoration: InputDecoration(
+                                                  hintText: l10n.ingredientHint(
+                                                    i + 1,
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          IconButton(
-                                            onPressed: () => _removeIngredient(i),
-                                            icon: Icon(
-                                              Icons.remove_circle_outline,
-                                              color: scheme.error,
+                                            IconButton(
+                                              onPressed: () =>
+                                                  _removeIngredient(i),
+                                              icon: Icon(
+                                                Icons.remove_circle_outline,
+                                                color: scheme.error,
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
                                   const SizedBox(height: 16),
                                   _DynamicListHeader(
                                     title: l10n.stepsSectionLabel,
@@ -471,11 +488,16 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                                     outlinedAction: true,
                                   ),
                                   const SizedBox(height: 8),
-                                  ...List.generate(_stepControllers.length, (i) {
+                                  ...List.generate(_stepControllers.length, (
+                                    i,
+                                  ) {
                                     return Padding(
-                                      padding: const EdgeInsets.only(bottom: 12),
+                                      padding: const EdgeInsets.only(
+                                        bottom: 12,
+                                      ),
                                       child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Container(
                                             width: 36,
@@ -483,14 +505,17 @@ class _RecipeCreatePageState extends State<RecipeCreatePage> {
                                             alignment: Alignment.center,
                                             decoration: BoxDecoration(
                                               color: scheme.primaryContainer,
-                                              borderRadius: BorderRadius.circular(8),
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
                                             ),
                                             child: Text(
                                               '${i + 1}',
-                                              style: theme.textTheme.titleSmall?.copyWith(
-                                                color: scheme.onPrimaryContainer,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                              style: theme.textTheme.titleSmall
+                                                  ?.copyWith(
+                                                    color: scheme
+                                                        .onPrimaryContainer,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                             ),
                                           ),
                                           const SizedBox(width: 10),
@@ -607,22 +632,13 @@ class _RecipePhotoSection extends StatelessWidget {
                 label: Text(l10n.takePhoto),
               ),
               if (pickedPath != null && pickedPath!.trim().isNotEmpty)
-                TextButton(
-                  onPressed: onClear,
-                  child: Text(l10n.clearPhoto),
-                )
+                TextButton(onPressed: onClear, child: Text(l10n.clearPhoto))
               else if (existingStoragePath != null &&
                   existingStoragePath!.trim().isNotEmpty)
-                TextButton(
-                  onPressed: onClear,
-                  child: Text(l10n.clearPhoto),
-                )
+                TextButton(onPressed: onClear, child: Text(l10n.clearPhoto))
               else if (networkPrefillUrl != null &&
                   networkPrefillUrl!.trim().isNotEmpty)
-                TextButton(
-                  onPressed: onClear,
-                  child: Text(l10n.clearPhoto),
-                ),
+                TextButton(onPressed: onClear, child: Text(l10n.clearPhoto)),
             ],
           ),
         ],
@@ -645,10 +661,7 @@ class _RecipePhotoSection extends StatelessWidget {
           if (networkPrefillUrl != null &&
               networkPrefillUrl!.trim().isNotEmpty) ...[
             const SizedBox(height: 8),
-            TextButton(
-              onPressed: onClear,
-              child: Text(l10n.clearPhoto),
-            ),
+            TextButton(onPressed: onClear, child: Text(l10n.clearPhoto)),
           ],
         ],
       ],
@@ -710,6 +723,9 @@ class _CreateHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             IconButton(
+              style: IconButton.styleFrom(
+                padding: const EdgeInsets.fromLTRB(2, 8, 10, 8),
+              ),
               icon: const Icon(Icons.arrow_back, color: Colors.white),
               tooltip: l10n.backToRecipes,
               onPressed: () => Navigator.of(context).pop(),
@@ -721,8 +737,8 @@ class _CreateHeader extends StatelessWidget {
                   isEditing
                       ? l10n.editRecipeTitle
                       : isTheMealDbImport
-                          ? l10n.importRecipeTitle
-                          : l10n.createRecipeTitle,
+                      ? l10n.importRecipeTitle
+                      : l10n.createRecipeTitle,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.headlineMedium?.copyWith(
@@ -761,9 +777,9 @@ class _DynamicListHeader extends StatelessWidget {
         Expanded(
           child: Text(
             title,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
           ),
         ),
         if (outlinedAction)
@@ -776,10 +792,7 @@ class _DynamicListHeader extends StatelessWidget {
             child: Text(actionLabel),
           )
         else
-          TextButton(
-            onPressed: onAdd,
-            child: Text(actionLabel),
-          ),
+          TextButton(onPressed: onAdd, child: Text(actionLabel)),
       ],
     );
   }
