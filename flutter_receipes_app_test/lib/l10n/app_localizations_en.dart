@@ -119,9 +119,102 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get createRecipeComingSoon =>
-      'Create recipe screen will be added here — ingredients, steps, and photo picker hook into your MVVM layer next.';
+  String get noRecipesMatch => 'No recipes match your search or filter.';
 
   @override
-  String get noRecipesMatch => 'No recipes match your search or filter.';
+  String get backToRecipes => 'Back to Recipes';
+
+  @override
+  String get createRecipeTitle => 'Create New Recipe';
+
+  @override
+  String get recipeTitleLabel => 'Recipe title *';
+
+  @override
+  String get recipeTypeLabel => 'Recipe type *';
+
+  @override
+  String get selectRecipeTypeHint => 'Select a type';
+
+  @override
+  String get prepTimeLabel => 'Prep time *';
+
+  @override
+  String get prepTimeHint => 'e.g. 30 or 30 minutes';
+
+  @override
+  String get servingsLabel => 'Servings *';
+
+  @override
+  String get servingsHint => 'e.g. 4';
+
+  @override
+  String get prepTimeInvalid =>
+      'Enter a prep time with a number (e.g. 15 or 20 min).';
+
+  @override
+  String get servingsInvalid => 'Enter a whole number ≥ 1.';
+
+  @override
+  String get fieldRequired => 'Required';
+
+  @override
+  String get recipePhotoLabel => 'Recipe photo';
+
+  @override
+  String get recipePhotoHelper =>
+      'Optional. Choose from gallery or camera on your phone. If you skip, the default image is used.';
+
+  @override
+  String get recipePhotoWebNote =>
+      'Photo picker runs on mobile and desktop apps. Here the default image will be used unless you build for a platform with gallery/camera.';
+
+  @override
+  String get pickFromGallery => 'Gallery';
+
+  @override
+  String get takePhoto => 'Camera';
+
+  @override
+  String get clearPhoto => 'Remove photo';
+
+  @override
+  String get ingredientsSectionLabel => 'Ingredients *';
+
+  @override
+  String get addIngredient => '+ Add ingredient';
+
+  @override
+  String ingredientHint(int n) {
+    return 'Ingredient $n';
+  }
+
+  @override
+  String get stepsSectionLabel => 'Steps *';
+
+  @override
+  String get addStep => '+ Add step';
+
+  @override
+  String stepHint(int n) {
+    return 'Step $n';
+  }
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get createRecipeSubmit => 'Create recipe';
+
+  @override
+  String get createRecipeFailed => 'Could not save recipe.';
+
+  @override
+  String get recipeTypeRequired => 'Choose a recipe type.';
+
+  @override
+  String get ingredientsRequired => 'Add at least one ingredient.';
+
+  @override
+  String get stepsRequired => 'Add at least one step.';
 }

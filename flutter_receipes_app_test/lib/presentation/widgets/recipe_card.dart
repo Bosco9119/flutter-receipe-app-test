@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/recipe_entity.dart';
+import 'local_file_image.dart';
 
 class RecipeCard extends StatelessWidget {
   const RecipeCard({
@@ -169,6 +170,10 @@ class _RecipeImage extends StatelessWidget {
           child: const Icon(Icons.broken_image_outlined, size: 40),
         ),
       );
+    }
+    final fileImage = buildLocalFileImage(path, fit: BoxFit.cover);
+    if (fileImage != null) {
+      return fileImage;
     }
     return ColoredBox(
       color: Theme.of(context).colorScheme.surfaceContainerHigh,

@@ -53,6 +53,49 @@
       }
     }
   },
-  "createRecipeComingSoon": "Layar buat resep akan ditambahkan di sini — bahan, langkah, dan pemilih foto terhubung ke lapisan MVVM berikutnya.",
-  "noRecipesMatch": "Tidak ada resep yang cocok dengan pencarian atau saringan Anda."
+  "noRecipesMatch": "Tidak ada resep yang cocok dengan pencarian atau saringan Anda.",
+  "backToRecipes": "Kembali ke resep",
+  "createRecipeTitle": "Buat resep baru",
+  "recipeTitleLabel": "Judul resep *",
+  "recipeTypeLabel": "Jenis resep *",
+  "selectRecipeTypeHint": "Pilih jenis",
+  "prepTimeLabel": "Waktu persiapan *",
+  "prepTimeHint": "mis. 30 atau 30 menit",
+  "servingsLabel": "Porsi *",
+  "servingsHint": "mis. 4",
+  "prepTimeInvalid": "Masukkan angka waktu (mis. 15 atau 20 menit).",
+  "servingsInvalid": "Masukkan bilangan bulat ≥ 1.",
+  "fieldRequired": "Wajib diisi",
+  "recipePhotoLabel": "Foto resep",
+  "recipePhotoHelper": "Opsional. Pilih dari galeri atau kamera di ponsel. Jika dilewati, gambar default dipakai.",
+  "recipePhotoWebNote": "Pemilih foto tersedia di aplikasi mobile/desktop. Di web, gambar default dipakai.",
+  "pickFromGallery": "Galeri",
+  "takePhoto": "Kamera",
+  "clearPhoto": "Hapus foto",
+  "ingredientsSectionLabel": "Bahan *",
+  "addIngredient": "+ Tambah bahan",
+  "ingredientHint": "Bahan {n}",
+  "@ingredientHint": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "stepsSectionLabel": "Langkah *",
+  "addStep": "+ Tambah langkah",
+  "stepHint": "Langkah {n}",
+  "@stepHint": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "cancel": "Batal",
+  "createRecipeSubmit": "Buat resep",
+  "createRecipeFailed": "Gagal menyimpan resep.",
+  "recipeTypeRequired": "Pilih jenis resep.",
+  "ingredientsRequired": "Tambah minimal satu bahan.",
+  "stepsRequired": "Tambah minimal satu langkah."
 }

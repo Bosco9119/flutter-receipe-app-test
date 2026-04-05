@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/di/injection.dart';
 import '../../l10n/app_localizations.dart';
+import '../view_models/recipe_create_view_model.dart';
 import '../view_models/recipe_list_view_model.dart';
 import '../widgets/app_settings_drawer.dart';
 import '../widgets/recipe_card.dart';
-import 'recipe_create_placeholder_page.dart';
+import 'recipe_create_page.dart';
 
 class RecipeListPage extends StatelessWidget {
   const RecipeListPage({super.key});
@@ -147,9 +149,12 @@ class _RecipeListBodyState extends State<_RecipeListBody> {
                 ),
                 FilledButton.icon(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        builder: (_) => const RecipeCreatePlaceholderPage(),
+                    Navigator.of(context).push<bool>(
+                      MaterialPageRoute<bool>(
+                        builder: (_) => ChangeNotifierProvider(
+                          create: (_) => RecipeCreateViewModel(sl())..loadTypes(),
+                          child: const RecipeCreatePage(),
+                        ),
                       ),
                     );
                   },

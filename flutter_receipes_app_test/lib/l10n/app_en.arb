@@ -56,6 +56,49 @@
       }
     }
   },
-  "createRecipeComingSoon": "Create recipe screen will be added here — ingredients, steps, and photo picker hook into your MVVM layer next.",
-  "noRecipesMatch": "No recipes match your search or filter."
+  "noRecipesMatch": "No recipes match your search or filter.",
+  "backToRecipes": "Back to Recipes",
+  "createRecipeTitle": "Create New Recipe",
+  "recipeTitleLabel": "Recipe title *",
+  "recipeTypeLabel": "Recipe type *",
+  "selectRecipeTypeHint": "Select a type",
+  "prepTimeLabel": "Prep time *",
+  "prepTimeHint": "e.g. 30 or 30 minutes",
+  "servingsLabel": "Servings *",
+  "servingsHint": "e.g. 4",
+  "prepTimeInvalid": "Enter a prep time with a number (e.g. 15 or 20 min).",
+  "servingsInvalid": "Enter a whole number ≥ 1.",
+  "fieldRequired": "Required",
+  "recipePhotoLabel": "Recipe photo",
+  "recipePhotoHelper": "Optional. Choose from gallery or camera on your phone. If you skip, the default image is used.",
+  "recipePhotoWebNote": "Photo picker runs on mobile and desktop apps. Here the default image will be used unless you build for a platform with gallery/camera.",
+  "pickFromGallery": "Gallery",
+  "takePhoto": "Camera",
+  "clearPhoto": "Remove photo",
+  "ingredientsSectionLabel": "Ingredients *",
+  "addIngredient": "+ Add ingredient",
+  "ingredientHint": "Ingredient {n}",
+  "@ingredientHint": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "stepsSectionLabel": "Steps *",
+  "addStep": "+ Add step",
+  "stepHint": "Step {n}",
+  "@stepHint": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "cancel": "Cancel",
+  "createRecipeSubmit": "Create recipe",
+  "createRecipeFailed": "Could not save recipe.",
+  "recipeTypeRequired": "Choose a recipe type.",
+  "ingredientsRequired": "Add at least one ingredient.",
+  "stepsRequired": "Add at least one step."
 }

@@ -119,10 +119,102 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get createRecipeComingSoon =>
-      'Layar buat resep akan ditambahkan di sini — bahan, langkah, dan pemilih foto terhubung ke lapisan MVVM berikutnya.';
-
-  @override
   String get noRecipesMatch =>
       'Tidak ada resep yang cocok dengan pencarian atau saringan Anda.';
+
+  @override
+  String get backToRecipes => 'Kembali ke resep';
+
+  @override
+  String get createRecipeTitle => 'Buat resep baru';
+
+  @override
+  String get recipeTitleLabel => 'Judul resep *';
+
+  @override
+  String get recipeTypeLabel => 'Jenis resep *';
+
+  @override
+  String get selectRecipeTypeHint => 'Pilih jenis';
+
+  @override
+  String get prepTimeLabel => 'Waktu persiapan *';
+
+  @override
+  String get prepTimeHint => 'mis. 30 atau 30 menit';
+
+  @override
+  String get servingsLabel => 'Porsi *';
+
+  @override
+  String get servingsHint => 'mis. 4';
+
+  @override
+  String get prepTimeInvalid => 'Masukkan angka waktu (mis. 15 atau 20 menit).';
+
+  @override
+  String get servingsInvalid => 'Masukkan bilangan bulat ≥ 1.';
+
+  @override
+  String get fieldRequired => 'Wajib diisi';
+
+  @override
+  String get recipePhotoLabel => 'Foto resep';
+
+  @override
+  String get recipePhotoHelper =>
+      'Opsional. Pilih dari galeri atau kamera di ponsel. Jika dilewati, gambar default dipakai.';
+
+  @override
+  String get recipePhotoWebNote =>
+      'Pemilih foto tersedia di aplikasi mobile/desktop. Di web, gambar default dipakai.';
+
+  @override
+  String get pickFromGallery => 'Galeri';
+
+  @override
+  String get takePhoto => 'Kamera';
+
+  @override
+  String get clearPhoto => 'Hapus foto';
+
+  @override
+  String get ingredientsSectionLabel => 'Bahan *';
+
+  @override
+  String get addIngredient => '+ Tambah bahan';
+
+  @override
+  String ingredientHint(int n) {
+    return 'Bahan $n';
+  }
+
+  @override
+  String get stepsSectionLabel => 'Langkah *';
+
+  @override
+  String get addStep => '+ Tambah langkah';
+
+  @override
+  String stepHint(int n) {
+    return 'Langkah $n';
+  }
+
+  @override
+  String get cancel => 'Batal';
+
+  @override
+  String get createRecipeSubmit => 'Buat resep';
+
+  @override
+  String get createRecipeFailed => 'Gagal menyimpan resep.';
+
+  @override
+  String get recipeTypeRequired => 'Pilih jenis resep.';
+
+  @override
+  String get ingredientsRequired => 'Tambah minimal satu bahan.';
+
+  @override
+  String get stepsRequired => 'Tambah minimal satu langkah.';
 }

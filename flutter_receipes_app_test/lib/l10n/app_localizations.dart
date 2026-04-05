@@ -248,17 +248,191 @@ abstract class AppLocalizations {
   /// **'{count, plural, =1{1 serving}other{{count} servings}}'**
   String servingsCount(int count);
 
-  /// No description provided for @createRecipeComingSoon.
-  ///
-  /// In en, this message translates to:
-  /// **'Create recipe screen will be added here — ingredients, steps, and photo picker hook into your MVVM layer next.'**
-  String get createRecipeComingSoon;
-
   /// No description provided for @noRecipesMatch.
   ///
   /// In en, this message translates to:
   /// **'No recipes match your search or filter.'**
   String get noRecipesMatch;
+
+  /// No description provided for @backToRecipes.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Recipes'**
+  String get backToRecipes;
+
+  /// No description provided for @createRecipeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create New Recipe'**
+  String get createRecipeTitle;
+
+  /// No description provided for @recipeTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipe title *'**
+  String get recipeTitleLabel;
+
+  /// No description provided for @recipeTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipe type *'**
+  String get recipeTypeLabel;
+
+  /// No description provided for @selectRecipeTypeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a type'**
+  String get selectRecipeTypeHint;
+
+  /// No description provided for @prepTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Prep time *'**
+  String get prepTimeLabel;
+
+  /// No description provided for @prepTimeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 30 or 30 minutes'**
+  String get prepTimeHint;
+
+  /// No description provided for @servingsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Servings *'**
+  String get servingsLabel;
+
+  /// No description provided for @servingsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 4'**
+  String get servingsHint;
+
+  /// No description provided for @prepTimeInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a prep time with a number (e.g. 15 or 20 min).'**
+  String get prepTimeInvalid;
+
+  /// No description provided for @servingsInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a whole number ≥ 1.'**
+  String get servingsInvalid;
+
+  /// No description provided for @fieldRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get fieldRequired;
+
+  /// No description provided for @recipePhotoLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipe photo'**
+  String get recipePhotoLabel;
+
+  /// No description provided for @recipePhotoHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional. Choose from gallery or camera on your phone. If you skip, the default image is used.'**
+  String get recipePhotoHelper;
+
+  /// No description provided for @recipePhotoWebNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo picker runs on mobile and desktop apps. Here the default image will be used unless you build for a platform with gallery/camera.'**
+  String get recipePhotoWebNote;
+
+  /// No description provided for @pickFromGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get pickFromGallery;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get takePhoto;
+
+  /// No description provided for @clearPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get clearPhoto;
+
+  /// No description provided for @ingredientsSectionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ingredients *'**
+  String get ingredientsSectionLabel;
+
+  /// No description provided for @addIngredient.
+  ///
+  /// In en, this message translates to:
+  /// **'+ Add ingredient'**
+  String get addIngredient;
+
+  /// No description provided for @ingredientHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ingredient {n}'**
+  String ingredientHint(int n);
+
+  /// No description provided for @stepsSectionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps *'**
+  String get stepsSectionLabel;
+
+  /// No description provided for @addStep.
+  ///
+  /// In en, this message translates to:
+  /// **'+ Add step'**
+  String get addStep;
+
+  /// No description provided for @stepHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {n}'**
+  String stepHint(int n);
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @createRecipeSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Create recipe'**
+  String get createRecipeSubmit;
+
+  /// No description provided for @createRecipeFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save recipe.'**
+  String get createRecipeFailed;
+
+  /// No description provided for @recipeTypeRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a recipe type.'**
+  String get recipeTypeRequired;
+
+  /// No description provided for @ingredientsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one ingredient.'**
+  String get ingredientsRequired;
+
+  /// No description provided for @stepsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one step.'**
+  String get stepsRequired;
 }
 
 class _AppLocalizationsDelegate
