@@ -60,3 +60,4 @@ flutter:
     - assets/data/recipetypes.json
     - assets/data/recipes.json
     - assets/data/images/recipes/
+    - assets/data/images/AppIcons/Assets.xcassets/AppIcon.appiconset/_/1024.png

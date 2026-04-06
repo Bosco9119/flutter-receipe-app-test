@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/auth/google_sign_in_cancelled_exception.dart';
+import '../../core/constants/app_branding.dart';
 import '../../l10n/app_localizations.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/gradient_background.dart';
@@ -98,6 +99,44 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          Center(
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(22),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: scheme.shadow.withValues(alpha: 0.12),
+                                    blurRadius: 16,
+                                    offset: const Offset(0, 6),
+                                  ),
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(22),
+                                child: Image.asset(
+                                  AppBranding.loginLogoAsset,
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return ColoredBox(
+                                      color: scheme.primaryContainer,
+                                      child: SizedBox(
+                                        width: 100,
+                                        height: 100,
+                                        child: Icon(
+                                          Icons.restaurant_rounded,
+                                          size: 48,
+                                          color: scheme.onPrimaryContainer,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
                           Text(
                             l10n.login,
                             style: theme.textTheme.headlineSmall?.copyWith(
