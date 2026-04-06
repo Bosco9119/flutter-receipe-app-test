@@ -103,25 +103,25 @@ Application name: MyFoodJourney
 ## Screenshots
 
 ### Login Screen
-![Login](screenshots/login.jpeg)
+![Login](flutter_receipes_app_test/screenshots/login.jpeg)
 
 ### Recipe List
-![Recipe List](screenshots/recipe_list.jpeg)
+![Recipe List](flutter_receipes_app_test/screenshots/recipe_list.jpeg)
 
 ### Recipe List Dark
-![Recipe List](screenshots/recipe_list_dark.jpeg)
+![Recipe List](flutter_receipes_app_test/screenshots/recipe_list_dark.jpeg)
 
 ### Recipe Detail
-![Recipe Detail](screenshots/recipe_detail.png)
+![Recipe Detail](flutter_receipes_app_test/screenshots/recipe_detail.png)
 
 ### Create Recipe
-![Create Recipe](screenshots/create_recipe.jpeg)
+![Create Recipe](flutter_receipes_app_test/screenshots/create_recipe.jpeg)
 
 ### Import Recipe from API
-![Import Recipe](screenshots/import_recipe.jpeg)
+![Import Recipe](flutter_receipes_app_test/screenshots/import_recipe.jpeg)
 
 ### Setting Drawer
-![Import Recipe](screenshots/setting_drawer.jpeg)
+![Import Recipe](flutter_receipes_app_test/screenshots/setting_drawer.jpeg)
 
 ### Sort By
-![Import Recipe](screenshots/sort.jpeg)
+![Import Recipe](flutter_receipes_app_test/screenshots/sort.jpeg)
